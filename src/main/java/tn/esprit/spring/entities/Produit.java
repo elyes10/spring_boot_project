@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -22,20 +23,21 @@ public class Produit {
   private String  Lieblle ; 
   private Float prixUnitaire;
   
+  
   @ManyToOne
   private Rayon rayon;
   
-  @ManyToOne
-  private detailFacture detailfacture;
+  @OneToMany(mappedBy="Produit")
+  private Set<detailFacture> detailFacture;
+  
   
   @ManyToOne
   private Stock stock;
   @OneToOne
   private DetailProduit Detailproduit;
+ 
   @ManyToMany(cascade = CascadeType.ALL)
   private Set<Fournisseur> Fournisseur;
-  
-  
 public Produit() {
 	super();
 	// TODO Auto-generated constructor stub

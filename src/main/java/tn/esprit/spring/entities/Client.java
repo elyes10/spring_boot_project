@@ -1,5 +1,6 @@
 package tn.esprit.spring.entities;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Client {
+public class Client  {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
