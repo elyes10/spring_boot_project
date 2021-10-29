@@ -12,9 +12,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import java.io.Serializable;
+import java.util.*;
+
+
+
 
 @Entity
-public class Produit {
+public class Produit implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L ;
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -28,16 +36,18 @@ public class Produit {
   private Rayon rayon;
   
   @OneToMany(mappedBy="Produit")
-  private Set<detailFacture> detailFacture;
+  private List <detailFacture> detailFacture;
   
   
   @ManyToOne
   private Stock stock;
+  
   @OneToOne
   private DetailProduit Detailproduit;
  
   @ManyToMany(cascade = CascadeType.ALL)
   private Set<Fournisseur> Fournisseur;
+  
 public Produit() {
 	super();
 	// TODO Auto-generated constructor stub
@@ -81,6 +91,17 @@ public Float getPrixUnitaire() {
 
 public void setPrixUnitaire(Float prixUnitaire) {
 	this.prixUnitaire = prixUnitaire;
+}
+
+
+
+public Set<Fournisseur> getFournisseur() {
+	return Fournisseur;
+}
+
+
+public void setFournisseur(Set<Fournisseur> fournisseur) {
+	Fournisseur = fournisseur;
 }
 
 
