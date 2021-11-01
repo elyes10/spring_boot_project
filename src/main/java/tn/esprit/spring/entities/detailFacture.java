@@ -1,12 +1,16 @@
 package tn.esprit.spring.entities;
 
-import java.util.List;
+import java.io.Serializable;
+
 
 import javax.persistence.*;
 
 
 @Entity
-public class detailFacture {
+public class detailFacture implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L ;
 	
 	
 	@Id

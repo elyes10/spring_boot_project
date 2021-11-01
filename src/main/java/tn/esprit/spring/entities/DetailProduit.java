@@ -2,10 +2,15 @@ package tn.esprit.spring.entities;
 
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class DetailProduit {
+public class DetailProduit implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L ;
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
