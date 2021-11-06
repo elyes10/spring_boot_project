@@ -1,24 +1,46 @@
 package tn.esprit.spring.entities;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 
 
 @Entity
-public class Client  {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
+public class Client  implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L ;
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="idClient")
 	private Long idClient;
+	@Column(name="nom")
 	private String nom;
+	@Column(name="prenom")
 	private String  prenom;
 	@Temporal (TemporalType.DATE)
 	private Date dateNaissance;
+	@Column(name="email")
 	private String  email;
+	@Column(name="password")
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private categorieClient  CategorieClient;
@@ -30,73 +52,5 @@ public class Client  {
 	private  List <Facture> Factures;
 	
 	
-	public Client() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Client(Long idClient, String nom, String prenom, Date dateNaissance, String email, String password,
-			categorieClient categorieClient, tn.esprit.spring.entities.profession profession) {
-		super();
-		this.idClient = idClient;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateNaissance = dateNaissance;
-		this.email = email;
-		this.password = password;
-		CategorieClient = categorieClient;
-		this.profession = profession;
-	}
 	
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-	public Date getDateNaissance() {
-		return dateNaissance;
-	}
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public categorieClient getCategorieClient() {
-		return CategorieClient;
-	}
-	public void setCategorieClient(categorieClient categorieClient) {
-		CategorieClient = categorieClient;
-	}
-	public profession getProfession() {
-		return profession;
-	}
-	public void setProfession(profession profession) {
-		this.profession = profession;
-	}
-	@Override
-	public String toString() {
-		return "Client [idClient=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance="
-				+ dateNaissance + ", email=" + email + ", password=" + password + ", CategorieClient=" + CategorieClient
-				+ ", profession=" + profession + "]";
-	}
-	
-	
-	
-
 }

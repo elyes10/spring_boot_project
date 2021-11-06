@@ -1,0 +1,143 @@
+2021-11-06 15:55:20.540  INFO 17656 --- [restartedMain] tn.esprit.spring.ExerciceApplication     : Starting ExerciceApplication using Java 1.8.0_301 on LAPTOP-0QEFGS6U with PID 17656 (C:\work\workspace-sts\Exercice\target\classes started by wassy in C:\work\workspace-sts\Exercice)
+2021-11-06 15:55:20.547  INFO 17656 --- [restartedMain] tn.esprit.spring.ExerciceApplication     : No active profile set, falling back to default profiles: default
+2021-11-06 15:55:20.611  INFO 17656 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-11-06 15:55:20.612  INFO 17656 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-11-06 15:55:21.878  INFO 17656 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-06 15:55:21.944  INFO 17656 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+2021-11-06 15:55:22.277  INFO 17656 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$c2c9cfd4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-06 15:55:22.358  INFO 17656 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-11-06 15:55:22.821  INFO 17656 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2021-11-06 15:55:22.837  INFO 17656 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-06 15:55:22.838  INFO 17656 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-06 15:55:22.945  INFO 17656 --- [restartedMain] o.a.c.c.C.[.[localhost].[/SpringMVC]     : Initializing Spring embedded WebApplicationContext
+2021-11-06 15:55:22.945  INFO 17656 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2332 ms
+2021-11-06 15:55:23.232  INFO 17656 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-06 15:55:23.312  INFO 17656 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-06 15:55:23.510  INFO 17656 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-06 15:55:23.626  INFO 17656 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-06 15:55:23.783  INFO 17656 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-06 15:55:23.800  INFO 17656 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-11-06 15:55:24.765  INFO 17656 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-06 15:55:24.774  INFO 17656 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 15:55:25.721  WARN 17656 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-06 15:55:26.075  INFO 17656 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-11-06 15:55:26.298  INFO 17656 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path '/SpringMVC'
+2021-11-06 15:55:26.619  INFO 17656 --- [restartedMain] tn.esprit.spring.ExerciceApplication     : Started ExerciceApplication in 6.475 seconds (JVM running for 7.215)
+2021-11-06 15:56:10.353  INFO 17656 --- [http-nio-8089-exec-1] o.a.c.c.C.[.[localhost].[/SpringMVC]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-06 15:56:10.353  INFO 17656 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-06 15:56:10.355  INFO 17656 --- [http-nio-8089-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-11-06 15:56:10.486  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=1, Code=code, libelle=libelle, Produits=[])
+2021-11-06 15:56:10.486  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=2, Code=null, libelle=null, Produits=[])
+2021-11-06 15:56:10.486  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=3, Code=null, libelle=null, Produits=[])
+2021-11-06 15:56:10.487  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=4, Code=null, libelle=null, Produits=[])
+2021-11-06 15:56:10.487  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=6, Code=rayon charge, libelle=alimentation, Produits=[])
+2021-11-06 15:56:10.487  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=7, Code=null, libelle=null, Produits=[])
+2021-11-06 15:56:10.487  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=8, Code=null, libelle=null, Produits=[])
+2021-11-06 15:56:10.487  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=9, Code=null, libelle=null, Produits=[])
+2021-11-06 15:56:10.487  INFO 17656 --- [http-nio-8089-exec-1] t.e.spring.services.RayonServiceimpl     : list rayonRayon(idRayon=13, Code=mg, libelle=luxe, Produits=[])
+2021-11-06 15:58:44.367  INFO 17656 --- [http-nio-8089-exec-5] t.e.spring.services.RayonServiceimpl     : rayon ajoutéRayon(idRayon=18, Code=addcode, libelle=addlibelle, Produits=[])
+2021-11-06 16:00:25.345  INFO 17656 --- [http-nio-8089-exec-8] t.e.spring.services.RayonServiceimpl     : rayon updateRayon(idRayon=14, Code=addcodeupdated, libelle=addlibelleupdated, Produits=[])
+2021-11-06 16:01:02.719  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=1, qte=40, qteMin=5, libelleStock=stock_d, Produits=[])
+2021-11-06 16:01:02.719  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=6, qte=40, qteMin=35, libelleStock=stock updated, Produits=[])
+2021-11-06 16:01:02.719  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=17, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.719  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=13, qte=30, qteMin=10, libelleStock=en stock, Produits=[])
+2021-11-06 16:01:02.719  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=18, qte=20, qteMin=19, libelleStock=new stock, Produits=[])
+2021-11-06 16:01:02.719  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=19, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.720  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=20, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.720  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=21, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.720  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=22, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.720  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=23, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.720  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=24, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.720  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=25, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:01:02.720  INFO 17656 --- [http-nio-8089-exec-9] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=27, qte=60, qteMin=70, libelleStock=stock s, Produits=[])
+2021-11-06 16:02:04.509  INFO 17656 --- [http-nio-8089-exec-2] t.e.spring.services.StockServiceimpl     : stock ajoutéStock(idStock=null, qte=500, qteMin=600, libelleStock=stock_S, Produits=[])
+2021-11-06 16:03:47.415  INFO 17656 --- [http-nio-8089-exec-5] t.e.spring.services.StockServiceimpl     : stock updateStock(idStock=28, qte=700, qteMin=800, libelleStock=stock_Supdated, Produits=[])
+2021-11-06 16:05:35.483  INFO 17656 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-11-06 16:05:35.634  INFO 17656 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 16:05:35.638  INFO 17656 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-06 16:05:35.648  INFO 17656 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-06 16:18:34.636  INFO 15252 --- [main] tn.esprit.spring.Stocktest               : Starting Stocktest using Java 1.8.0_301 on LAPTOP-0QEFGS6U with PID 15252 (started by wassy in C:\work\workspace-sts\Exercice)
+2021-11-06 16:18:34.638  INFO 15252 --- [main] tn.esprit.spring.Stocktest               : No active profile set, falling back to default profiles: default
+2021-11-06 16:18:35.678  INFO 15252 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-06 16:18:35.757  INFO 15252 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 2 JPA repository interfaces.
+2021-11-06 16:18:36.115  INFO 15252 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$f2a4f786] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-06 16:18:36.203  INFO 15252 --- [main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-11-06 16:18:36.547  INFO 15252 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-06 16:18:36.696  INFO 15252 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-06 16:18:36.899  INFO 15252 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-06 16:18:37.199  INFO 15252 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-06 16:18:37.355  INFO 15252 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-06 16:18:37.374  INFO 15252 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-11-06 16:18:38.386  INFO 15252 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-06 16:18:38.395  INFO 15252 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 16:18:39.568  WARN 15252 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-06 16:18:41.173  INFO 15252 --- [main] tn.esprit.spring.Stocktest               : Started Stocktest in 6.85 seconds (JVM running for 7.735)
+2021-11-06 16:18:41.395  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=1, qte=40, qteMin=5, libelleStock=stock_d, Produits=[])
+2021-11-06 16:18:41.395  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=6, qte=40, qteMin=35, libelleStock=stock updated, Produits=[])
+2021-11-06 16:18:41.395  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=17, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.395  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=13, qte=30, qteMin=10, libelleStock=en stock, Produits=[])
+2021-11-06 16:18:41.395  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=18, qte=20, qteMin=19, libelleStock=new stock, Produits=[])
+2021-11-06 16:18:41.395  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=19, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.395  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=20, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.396  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=21, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.396  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=22, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.396  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=23, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.396  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=24, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.396  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=25, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:18:41.396  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=27, qte=60, qteMin=70, libelleStock=stock s, Produits=[])
+2021-11-06 16:18:41.396  INFO 15252 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=28, qte=700, qteMin=800, libelleStock=stock_Supdated, Produits=[])
+2021-11-06 16:18:41.410  INFO 15252 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 16:18:41.413  INFO 15252 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-06 16:18:41.422  INFO 15252 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-06 16:19:36.550  INFO 11208 --- [main] tn.esprit.spring.Stocktest               : Starting Stocktest using Java 1.8.0_301 on LAPTOP-0QEFGS6U with PID 11208 (started by wassy in C:\work\workspace-sts\Exercice)
+2021-11-06 16:19:36.552  INFO 11208 --- [main] tn.esprit.spring.Stocktest               : No active profile set, falling back to default profiles: default
+2021-11-06 16:19:37.413  INFO 11208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-06 16:19:37.470  INFO 11208 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 2 JPA repository interfaces.
+2021-11-06 16:19:37.814  INFO 11208 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$f2a4f786] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-06 16:19:37.860  INFO 11208 --- [main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-11-06 16:19:38.167  INFO 11208 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-06 16:19:38.288  INFO 11208 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-06 16:19:38.410  INFO 11208 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-06 16:19:38.663  INFO 11208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-06 16:19:38.798  INFO 11208 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-06 16:19:38.812  INFO 11208 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-11-06 16:19:39.603  INFO 11208 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-06 16:19:39.613  INFO 11208 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 16:19:40.608  WARN 11208 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-06 16:19:42.191  INFO 11208 --- [main] tn.esprit.spring.Stocktest               : Started Stocktest in 5.917 seconds (JVM running for 6.677)
+2021-11-06 16:19:42.399  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=1, qte=40, qteMin=5, libelleStock=stock_d, Produits=[])
+2021-11-06 16:19:42.399  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=6, qte=40, qteMin=35, libelleStock=stock updated, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=17, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=13, qte=30, qteMin=10, libelleStock=en stock, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=18, qte=20, qteMin=19, libelleStock=new stock, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=19, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=20, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=21, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=22, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=23, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=24, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=25, qte=0, qteMin=0, libelleStock=null, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=27, qte=60, qteMin=70, libelleStock=stock s, Produits=[])
+2021-11-06 16:19:42.400  INFO 11208 --- [main] t.e.spring.services.StockServiceimpl     : list stockStock(idStock=28, qte=700, qteMin=800, libelleStock=stock_Supdated, Produits=[])
+2021-11-06 16:19:42.418  INFO 11208 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 16:19:42.422  INFO 11208 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-06 16:19:42.430  INFO 11208 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-11-06 16:20:24.856  INFO 7768 --- [main] tn.esprit.spring.Stocktest               : Starting Stocktest using Java 1.8.0_301 on LAPTOP-0QEFGS6U with PID 7768 (started by wassy in C:\work\workspace-sts\Exercice)
+2021-11-06 16:20:24.858  INFO 7768 --- [main] tn.esprit.spring.Stocktest               : No active profile set, falling back to default profiles: default
+2021-11-06 16:20:25.710  INFO 7768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-11-06 16:20:25.776  INFO 7768 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 2 JPA repository interfaces.
+2021-11-06 16:20:26.079  INFO 7768 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$f2a4f786] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-11-06 16:20:26.128  INFO 7768 --- [main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2021-11-06 16:20:26.429  INFO 7768 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-11-06 16:20:26.547  INFO 7768 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-11-06 16:20:26.674  INFO 7768 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-11-06 16:20:26.923  INFO 7768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-11-06 16:20:27.060  INFO 7768 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-11-06 16:20:27.073  INFO 7768 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-11-06 16:20:27.855  INFO 7768 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-11-06 16:20:27.863  INFO 7768 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 16:20:28.868  WARN 7768 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-11-06 16:20:30.397  INFO 7768 --- [main] tn.esprit.spring.Stocktest               : Started Stocktest in 5.827 seconds (JVM running for 6.558)
+2021-11-06 16:20:30.582  INFO 7768 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-11-06 16:20:30.584  INFO 7768 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-11-06 16:20:30.592  INFO 7768 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

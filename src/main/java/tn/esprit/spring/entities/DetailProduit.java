@@ -2,13 +2,32 @@ package tn.esprit.spring.entities;
 
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class DetailProduit {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
+public class DetailProduit implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L ;
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="idDertailProduit")
 	private Long idDetailProduit;
 	@Temporal (TemporalType.DATE)
 	private Date dateCreation;
@@ -18,88 +37,6 @@ public class DetailProduit {
 	private categorieProduit CategorieProduit;
 	
 	
-	
-	public DetailProduit() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	
-	
-	public DetailProduit(Long idDetailProduit, Date dateCreation, Date dateDerniereModification,
-			categorieProduit categorieProduit) {
-		super();
-		this.idDetailProduit = idDetailProduit;
-		this.dateCreation = dateCreation;
-		this.dateDerniereModification = dateDerniereModification;
-		CategorieProduit = categorieProduit;
-	}
-
-
-
-
-
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-
-
-
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-
-
-
-
-	public Date getDateDerniereModification() {
-		return dateDerniereModification;
-	}
-
-
-
-
-
-	public void setDateDerniereModification(Date dateDerniereModification) {
-		this.dateDerniereModification = dateDerniereModification;
-	}
-
-
-
-
-
-	public categorieProduit getCategorieProduit() {
-		return CategorieProduit;
-	}
-
-
-
-
-
-	public void setCategorieProduit(categorieProduit categorieProduit) {
-		CategorieProduit = categorieProduit;
-	}
-
-
-
-
-
-	@Override
-	public String toString() {
-		return "DetailProduit [idDetailProduit=" + idDetailProduit + ", dateCreation=" + dateCreation
-				+ ", dateDerniereModification=" + dateDerniereModification + ", CategorieProduit=" + CategorieProduit
-				+ "]";
-	}
-
-
-
-
-
 	
 	
 }

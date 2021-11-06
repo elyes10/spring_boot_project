@@ -1,96 +1,54 @@
 package tn.esprit.spring.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
 @Entity
-public class Stock {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
+public class Stock implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L ;
 	
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="idStock")
 	private Long idStock;
+	@Column(name="qte")
 	private  int  qte;
+	@Column(name="qteMin")
 	private int qteMin;
+	@Column(name="libelleStock")
 	private String libelleStock;
 	
-	@OneToMany(mappedBy = "stock")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "stock")
 	private  List <Produit> Produits;
-	
-	
-	public Stock() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-
-
-
-	public Stock(Long idStock, int qte, int qteMin, String libelleStock) {
+	public Stock(Long idStock) {
 		super();
 		this.idStock = idStock;
-		this.qte = qte;
-		this.qteMin = qteMin;
-		this.libelleStock = libelleStock;
-	}
-
-
-
-
-
-
-
-	public int getQte() {
-		return qte;
-	}
-
-
-
-
-	public void setQte(int qte) {
-		this.qte = qte;
-	}
-
-
-
-
-	public int getQteMin() {
-		return qteMin;
-	}
-
-
-
-
-	public void setQteMin(int qteMin) {
-		this.qteMin = qteMin;
-	}
-
-
-
-
-	public String getLibelleStock() {
-		return libelleStock;
-	}
-
-
-
-
-	public void setLibelleStock(String libelleStock) {
-		this.libelleStock = libelleStock;
-	}
-
-
-
-
-	@Override
-	public String toString() {
-		return "Stock [idStock=" + idStock + ", qte=" + qte + ", qteMin=" + qteMin + ", libelleStock=" + libelleStock
-				+ "]";
 	}
 	
 	
