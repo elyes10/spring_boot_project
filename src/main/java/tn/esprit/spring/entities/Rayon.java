@@ -3,13 +3,29 @@ package tn.esprit.spring.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Rayon implements Serializable{
 	
 	
@@ -18,47 +34,22 @@ public class Rayon implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="idRayon")
 	private Long idRayon;
+	@Column(name="code")
 	private String Code;
+	@Column(name="libelle")
 	private String libelle;
 	
-	@OneToMany(mappedBy = "rayon")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "rayon")
 	private  List <Produit> Produits;
-	
-	public Rayon() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Rayon(Long idRayon, String code, String libelle) {
+
+	public Rayon(Long idRayon) {
 		super();
 		this.idRayon = idRayon;
-		Code = code;
-		this.libelle = libelle;
 	}
 	
 	
-	
-	public String getCode() {
-		return Code;
-	}
-
-	public void setCode(String code) {
-		Code = code;
-	}
-
-	public String getLibelle() {
-		return libelle;
-	}
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-
-	@Override
-	public String toString() {
-		return "Rayon [idRayon=" + idRayon + ", Code=" + Code + ", libelle=" + libelle + "]";
-	}
 	
 	
 	

@@ -6,7 +6,22 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Facture implements Serializable{
 	
 	
@@ -14,11 +29,15 @@ public class Facture implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	
 	private Long idFActure;
+	@Column(name="montantRemise")
 	private float montantRemise ;
+	@Column(name="montantFacture")
 	private float montantFacture;
 	@Temporal (TemporalType.DATE)
 	private Date dateFacture;
+	@Column(name="active")
 	private Boolean active;
 	
 	//relation client et facture
@@ -33,51 +52,5 @@ public class Facture implements Serializable{
 	
 	
 	
-	public Facture() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Facture(Long idFActure, float montantRemise, float montantFacture, Date dateFacture, Boolean active) {
-		super();
-		this.idFActure = idFActure;
-		this.montantRemise = montantRemise;
-		this.montantFacture = montantFacture;
-		this.dateFacture = dateFacture;
-		this.active = active;
-	}
 	
-	
-	public float getMontantRemise() {
-		return montantRemise;
-	}
-	public void setMontantRemise(float montantRemise) {
-		this.montantRemise = montantRemise;
-	}
-	public float getMontantFacture() {
-		return montantFacture;
-	}
-	public void setMontantFacture(float montantFacture) {
-		this.montantFacture = montantFacture;
-	}
-	public Date getDateFacture() {
-		return dateFacture;
-	}
-	public void setDateFacture(Date dateFacture) {
-		this.dateFacture = dateFacture;
-	}
-	public Boolean getActive() {
-		return active;
-	}
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
-	@Override
-	public String toString() {
-		return "Facture [idFActure=" + idFActure + ", montantRemise=" + montantRemise + ", montantFacture="
-				+ montantFacture + ", dateFacture=" + dateFacture + ", active=" + active + "]";
-	}
-	
-	
-	
-
 }

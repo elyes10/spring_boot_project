@@ -3,9 +3,13 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,17 +39,27 @@ public class Client  implements Serializable{
 	private String  email;
 	private String password;
 	@Enumerated(EnumType.STRING)
-	private categorieClient  CategorieClient;
+	private categorieClient  categorieClient;
 	@Enumerated(EnumType.STRING)
 	private profession  profession;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private  List <Facture> Factures;
 	
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinTable(	name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 	
-	
-	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	
 	
 	

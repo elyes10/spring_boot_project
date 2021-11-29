@@ -5,8 +5,21 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class detailFacture implements Serializable{
 	
 	
@@ -15,10 +28,15 @@ public class detailFacture implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="idDetailFacture")
 	private Long idDetailFacture;
+	@Column(name="qte")
 	private int qte;
+	@Column(name="prixTotal")
 	private Float prixTotal;
+	@Column(name="pourcentageRemise")
 	private int pourcentageRemise;
+	@Column(name="montantRemise")
 	private Float montanRemise;
 	
 	//relation 
@@ -29,194 +47,4 @@ public class detailFacture implements Serializable{
 	//
 	 @ManyToOne
 	  private Facture facture;
-	///
-	
-	public detailFacture() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
-
-	
-
-	
-
-	public detailFacture(Long idDetailFacture, int qte, Float prixTotal, int pourcentageRemise, Float montanRemise,
-			tn.esprit.spring.entities.Produit produit, Facture facture) {
-		super();
-		this.idDetailFacture = idDetailFacture;
-		this.qte = qte;
-		this.prixTotal = prixTotal;
-		this.pourcentageRemise = pourcentageRemise;
-		this.montanRemise = montanRemise;
-		Produit = produit;
-		this.facture = facture;
-	}
-
-
-
-
-
-
-
-	
-
-	public Long getIdDetailFacture() {
-		return idDetailFacture;
-	}
-
-
-
-
-
-
-
-	public void setIdDetailFacture(Long idDetailFacture) {
-		this.idDetailFacture = idDetailFacture;
-	}
-
-
-
-
-
-
-
-	public int getQte() {
-		return qte;
-	}
-
-
-
-
-
-
-
-	public void setQte(int qte) {
-		this.qte = qte;
-	}
-
-
-
-
-
-
-
-	public Float getPrixTotal() {
-		return prixTotal;
-	}
-
-
-
-
-
-
-
-	public void setPrixTotal(Float prixTotal) {
-		this.prixTotal = prixTotal;
-	}
-
-
-
-
-
-
-
-	public int getPourcentageRemise() {
-		return pourcentageRemise;
-	}
-
-
-
-
-
-
-
-	public void setPourcentageRemise(int pourcentageRemise) {
-		this.pourcentageRemise = pourcentageRemise;
-	}
-
-
-
-
-
-
-
-	public Float getMontanRemise() {
-		return montanRemise;
-	}
-
-
-
-
-
-
-
-	public void setMontanRemise(Float montanRemise) {
-		this.montanRemise = montanRemise;
-	}
-
-
-
-
-
-
-
-	public Produit getProduit() {
-		return Produit;
-	}
-
-
-
-
-
-
-
-	public void setProduit(Produit produit) {
-		Produit = produit;
-	}
-
-
-
-
-
-
-
-	public Facture getFacture() {
-		return facture;
-	}
-
-
-
-
-
-
-
-	public void setFacture(Facture facture) {
-		this.facture = facture;
-	}
-
-
-
-
-
-
-
-	@Override
-	public String toString() {
-		return "detailFacture [idDetailFacture=" + idDetailFacture + ", qte=" + qte + ", prixTotal=" + prixTotal
-				+ ", pourcentageRemise=" + pourcentageRemise + ", montanRemise=" + montanRemise + ", Produit=" + Produit
-				+ ", facture=" + facture + "]";
-	}
-
-
-
-
-
-
-
-	
-	
-	
-
 }
