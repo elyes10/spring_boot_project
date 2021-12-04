@@ -43,13 +43,20 @@ public class ClientServiceImpl implements ClientService {
 	
 	public Client updateClient(Client c) {
 		  Client existingClient = clientRepository.findById(c.getIdClient()).orElse(null);
-		  existingClient.setNom(c.getNom());
-		  existingClient.setPrenom(c.getPrenom());
-		  existingClient.setCategorieClient(c.getCategorieClient());
-		  existingClient.setDateNaissance(c.getDateNaissance());
-		  existingClient.setEmail(c.getEmail());
-		  existingClient.setPassword(c.getPassword());
-		  existingClient.setProfession(c.getProfession());
+		  if(c.getNom()!=null){
+		  existingClient.setNom(c.getNom());}
+		  if(c.getPrenom()!=null){
+		  existingClient.setPrenom(c.getPrenom());}
+		  if(c.getCategorieClient()!=null){
+		  existingClient.setCategorieClient(c.getCategorieClient());}
+		  if(c.getDateNaissance()!=null){
+		  existingClient.setDateNaissance(c.getDateNaissance());}
+		  if(c.getEmail()!=null){
+		  existingClient.setEmail(c.getEmail());}
+		  if(c.getPassword()!=null){
+		  existingClient.setPassword(c.getPassword());}
+		  if(c.getProfession()!=null){
+		  existingClient.setProfession(c.getProfession());}
 		  log.info("client updated"+c.toString());
 	        return clientRepository.save(existingClient);
 	        
@@ -107,6 +114,14 @@ public class ClientServiceImpl implements ClientService {
 			chiffreAffaire=chiffreAffaire+(listFacture.get(i).getMontantFacture()-listFacture.get(i).getMontantRemise());
 		}
 		return chiffreAffaire;
+	}
+
+	@Override
+	public float pourcentageCategorieClient(categorieClient categ) {
+		int allclients=retrieveAllClients().size();
+		int clientsbycateg=FindAllClientsByCategorie(categ).size();
+		float pourcentage=((float)clientsbycateg/allclients)*100;
+		return pourcentage;
 	}
 
 	

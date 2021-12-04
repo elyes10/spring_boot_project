@@ -17,4 +17,5 @@ public interface ClientService {
 	 List<Client> FindAllClientsByCategorie(categorieClient categorieClient);
 	 List<Facture> clientFacturesBetweenTwoDates(Client c,Date startDate,Date endDate);
 	 float chiffreAffaireDuneListeFacture(List<Facture>listFacture);
+	 float pourcentageCategorieClient(categorieClient categ);
 }

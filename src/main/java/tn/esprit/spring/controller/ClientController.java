@@ -77,4 +77,14 @@ public class ClientController {
 	 {
 		 return clientServiceImpl.getChiffreAffaireParCategorieClient(categorieClient, startDate, endDate);
 	 }
+	
+	@GetMapping("/clientsCategoryPourcentage/{category}")
+    public float ClientcategoryPourcentage(@PathVariable categorieClient category) {
+        return clientServiceImpl.pourcentageCategorieClient(category);
+    }
+
+	@GetMapping("/")
+	public String login(){
+		return "authenticated successfully" ;
+	}
 }
