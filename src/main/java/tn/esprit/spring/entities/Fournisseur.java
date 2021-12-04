@@ -2,13 +2,28 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Fournisseur implements Serializable{
 	
 	
@@ -17,38 +32,12 @@ public class Fournisseur implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="idFournisseur")
 	private Long idFournisseur;
+	@Column(name="code")
 	private String code;
+	@Column(name="libelle")
 	private String libelle;
-	public Fournisseur() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Fournisseur(Long idFournisseur, String code, String libelle) {
-		super();
-		this.idFournisseur = idFournisseur;
-		this.code = code;
-		this.libelle = libelle;
-	}
-	
-	
-	
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getLibelle() {
-		return libelle;
-	}
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-	@Override
-	public String toString() {
-		return "Fournissuer [idFournisseur=" + idFournisseur + ", code=" + code + ", libelle=" + libelle + "]";
-	}
 	
 	
 }

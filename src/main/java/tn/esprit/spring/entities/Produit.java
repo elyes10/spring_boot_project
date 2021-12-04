@@ -3,6 +3,7 @@ package tn.esprit.spring.entities;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -19,6 +27,12 @@ import java.util.*;
 
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Produit implements Serializable{
 	
 	
@@ -26,9 +40,13 @@ public class Produit implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="idProduit")
   private Long idProduit;
+	@Column(name="code")
   private String code;
+	@Column(name="Libelle")
   private String  Lieblle ; 
+	@Column(name="prixUnitaire")
   private Float prixUnitaire;
   
   
@@ -48,68 +66,6 @@ public class Produit implements Serializable{
   @ManyToMany(cascade = CascadeType.ALL)
   private Set<Fournisseur> Fournisseur;
   
-public Produit() {
-	super();
-	// TODO Auto-generated constructor stub
-}
 
-
-public Produit(String code, String lieblle, Float prixUnitaire) {
-	super();
-	this.code = code;
-	Lieblle = lieblle;
-	this.prixUnitaire = prixUnitaire;
-}
-
-
-
-
-public String getCode() {
-	return code;
-}
-
-
-public void setCode(String code) {
-	this.code = code;
-}
-
-
-public String getLieblle() {
-	return Lieblle;
-}
-
-
-public void setLieblle(String lieblle) {
-	Lieblle = lieblle;
-}
-
-
-public Float getPrixUnitaire() {
-	return prixUnitaire;
-}
-
-
-public void setPrixUnitaire(Float prixUnitaire) {
-	this.prixUnitaire = prixUnitaire;
-}
-
-
-
-public Set<Fournisseur> getFournisseur() {
-	return Fournisseur;
-}
-
-
-public void setFournisseur(Set<Fournisseur> fournisseur) {
-	Fournisseur = fournisseur;
-}
-
-
-@Override
-public String toString() {
-	return "produit [idProduit=" + idProduit + ", code=" + code + ", Lieblle=" + Lieblle + ", prixUnitaire="
-			+ prixUnitaire + "]";
-}
-  
   
 }
