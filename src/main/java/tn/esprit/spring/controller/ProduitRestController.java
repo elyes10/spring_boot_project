@@ -1,0 +1,139 @@
+package tn.esprit.spring.controller;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.management.relation.RelationNotFoundException;
+
+import org.apache.commons.logging.Log;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import tn.esprit.spring.entities.CategorieProduit;
+import tn.esprit.spring.entities.Produit;
+import tn.esprit.spring.service.IDetailProduitService;
+import tn.esprit.spring.service.IProduitService;
+@CrossOrigin("*")
+@Slf4j
+@RestController
+@RequestMapping("/produit")
+public class ProduitRestController {
+	
+	@Autowired
+	IProduitService ips;
+	
+	@Autowired
+	IDetailProduitService dps;
+	
+	
+	
+	@GetMapping(value="/getAllProduits")
+	@ResponseBody
+	public List<Produit> getProduits() {
+	List<Produit> listProduits = ips.findAllProduits();
+	return listProduits;
+
+}
+	
+	
+	/*@PostMapping(value ="/addProduit/{idr}/{ids}")
+	@ResponseBody
+	@ApiOperation(value = "Ajouter un produit")
+	public Produit ajoutProduit(@RequestBody Produit p,@PathVariable("idr") Long id ,@PathVariable("ids") Long ids ){
+		      //  log.info("test {}", p);
+				dps.saveDetailProduit(p.getDetailProduit());
+		   return ips.addProduit(p,(long)id,(long)ids);
+		   
+	}
+	*/
+	
+	@PostMapping(value ="/addProduit")
+	@ResponseBody
+	@ApiOperation(value = "Ajouter un produit")
+	public Produit ajoutProduit(@RequestBody Produit p){
+		      //  log.info("test {}", p);
+				dps.saveDetailProduit(p.getDetailProduit());
+				Produit product =  ips.addProduit(p);
+		   return product;
+		   
+	}
+	
+	
+	
+	@GetMapping("/retrieveProduit/{idProduit}")
+	@ResponseBody
+	 public Produit getProduit(@PathVariable("idProduit")Long idPoduit){
+		 Produit prd=ips.retrieveProduitById(idPoduit);
+		 return prd;}
+	
+	
+	@DeleteMapping("/deleteProduit/{idProduit}")
+	@ResponseBody
+	@ApiOperation(value = "Supprimer un produit")
+	public void deleteProduitById(@PathVariable("idProduit") Long idProduit){
+		//dps.deleteDetailProduitById(id)
+		ips.deleteProduitById(idProduit);
+		
+	}
+	
+	@PutMapping("/updateProduit/{idProduit}")
+	@ResponseBody
+	public void updateProduit(@RequestBody Produit p, @PathVariable("idProduit") Long idProduit) throws RelationNotFoundException{
+		 //p.getDetailProduit().setDateDerniereModification(new Date());
+			ips.updateProduit(p);
+
+	}
+	
+	
+
+	
+	
+	@GetMapping(value="/getProduitsByCategorie/{cp}")
+	@ResponseBody
+	public List<Produit> retrieveProduitsByCat(@PathVariable("cp") CategorieProduit categorieProduit){
+		 List<Produit> produits= ips.retrieveProduitsByCategorie(categorieProduit);
+		return produits ;
+		
+	}
+	
+	@PutMapping("/assignProduitToStock")
+	@ResponseBody
+	public void assignProduitToStock(@RequestBody Produit p){
+		ips.assignProduitToStock(p.getIdProduit(),p.getStock().getIdStock());
+       // log.info("test {}", idProduit,idStock);
+	}
+	
+	
+	  @PutMapping("/assignFournisseurToProduit/{p}/{f}")
+	  @ResponseBody public void assignFournisseurtToProduit(@RequestBody @PathVariable("p")
+	 Long  idProduit , @PathVariable("f") Long idFournisseur){
+		  ips.assignFournisseutToProduit(idProduit, idFournisseur);
+	  }
+	 
+
+	@GetMapping(value="/getProduitsByDateCreation/{d1}/{d2}")
+	@ResponseBody
+	public List<Produit> produitParDateCreation(@PathVariable("d1") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date d1,
+			@PathVariable("d2") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date d2 ) {
+		List <Produit>prod=ips.ProduitParDateCreation(d1, d2);
+		return prod;
+		
+	}
+	
+
+
+}

@@ -34,7 +34,7 @@ public class StockRestController {
 	@Autowired
 	IStockRepository isr;
 	// http://localhost:8089/SpringMVC/stock/get-all-stocks
-	@GetMapping("/get-all-stocks")
+	@GetMapping("/getAllStocks")
 	@ResponseBody
 	@ApiOperation(value = "Récupérer la liste des stocks")
 	public List<Stock> getStocks() {

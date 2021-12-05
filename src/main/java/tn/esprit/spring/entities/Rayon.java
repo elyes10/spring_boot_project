@@ -41,7 +41,8 @@ public class Rayon implements Serializable{
 	@Column(name="libelle")
 	private String libelle;
 	
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "rayon")
+	@OneToMany(mappedBy = "rayon")
+	@JsonIgnore
 	private  List <Produit> Produits;
 
 	public Rayon(Long idRayon) {

@@ -34,9 +34,11 @@ public class DetailProduit implements Serializable{
 	@Temporal (TemporalType.DATE)
 	private Date dateDerniereModification;
 	@Enumerated(EnumType.STRING)
-	private categorieProduit CategorieProduit;
+	private CategorieProduit categorieProduit;
 	
 	
-	
+	@JsonIgnore
+	@OneToOne(mappedBy="detailProduit")
+	Produit produit;
 	
 }

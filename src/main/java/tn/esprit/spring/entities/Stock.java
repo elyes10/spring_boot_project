@@ -46,7 +46,7 @@ public class Stock implements Serializable{
 	private String libelleStock;
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "stock")
+	@OneToMany(mappedBy = "stock")
 	private  List <Produit> Produits;
 
 	public Stock(Long idStock) {

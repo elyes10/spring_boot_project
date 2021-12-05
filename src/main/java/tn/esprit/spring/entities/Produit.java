@@ -42,30 +42,37 @@ public class Produit implements Serializable{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idProduit")
   private Long idProduit;
+
+  @NotNull
 	@Column(name="code")
   private String code;
-	@Column(name="Libelle")
-  private String  Lieblle ; 
+
+  @NotNull
+	@Column(name="libelle")
+  private String  libelle ; 
+
+  @NotNull
 	@Column(name="prixUnitaire")
   private Float prixUnitaire;
   
-  
+  @JsonProperty(access = Access.WRITE_ONLY)
   @ManyToOne
   private Rayon rayon;
   
   @OneToMany(mappedBy="Produit")
   private List <detailFacture> detailFacture;
   
-  
+   @JsonProperty(access = Access.WRITE_ONLY)
   @ManyToOne
   private Stock stock;
   
-  @OneToOne
-  private DetailProduit Detailproduit;
+  @OneToOne(cascade = {CascadeType.ALL})
+  private DetailProduit detailproduit;
  
   @ManyToMany(cascade = CascadeType.ALL)
   private Set<Fournisseur> Fournisseur;
   
-
+@OneToMany(cascade = {CascadeType.ALL}, mappedBy="produit")
+  private List <ImageModel> images;
   
 }
