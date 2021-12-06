@@ -1,26 +1,23 @@
-package tn.esprit.spring.service;
-
-import java.util.List;
-
-import javax.management.relation.RelationNotFoundException;
+package tn.esprit.spring.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import tn.esprit.spring.entities.Fournisseur;
-import tn.esprit.spring.entities.Produit;
 import tn.esprit.spring.repository.IFournisseurRepository;
+import tn.esprit.spring.service.IFournisseurService;
+
+import javax.management.relation.RelationNotFoundException;
+import java.util.List;
 
 @Service
-public class FournisseurServiceImpl implements IFournisseurService{
+public class FournisseurServiceImpl implements IFournisseurService {
 	
 	@Autowired
 	IFournisseurRepository founisseurRepo;
 
 	@Override
 	public List<Fournisseur> retrieveAllFournisseurs() {
-		List<Fournisseur> fournisseurs=founisseurRepo.findAll();
-		return fournisseurs;
+		return founisseurRepo.findAll();
 	}
 
 	@Override
@@ -31,14 +28,9 @@ public class FournisseurServiceImpl implements IFournisseurService{
 
 	@Override
 	public boolean deleteFournisseur(Long id) {
-		Fournisseur f =founisseurRepo .getOne(id);
-
-		if (f != null) {
-			founisseurRepo.delete(f);
-			return true;
-		}
-		return false;
-		
+		Fournisseur f = founisseurRepo.getById(id);
+		founisseurRepo.delete(f);
+		return true;
 	}
 
 	@Override
@@ -52,8 +44,7 @@ public class FournisseurServiceImpl implements IFournisseurService{
 
 	@Override
 	public Fournisseur retrieveFournisseur(Long id) {
-		Fournisseur f = founisseurRepo.findById(id).orElse(null);
-		return f;
+		return founisseurRepo.findById(id).orElse(null);
 	}
 
 }

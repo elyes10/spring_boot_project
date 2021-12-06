@@ -1,35 +1,17 @@
-package tn.esprit.spring.service;
+package tn.esprit.spring.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import tn.esprit.spring.entities.*;
+import tn.esprit.spring.repository.*;
+import tn.esprit.spring.service.IProduitService;
+
+import javax.management.relation.RelationNotFoundException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-
-import javax.management.relation.RelationNotFoundException;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import tn.esprit.spring.entities.CategorieProduit;
-import tn.esprit.spring.entities.DetailProduit;
-import tn.esprit.spring.entities.Fournisseur;
-import tn.esprit.spring.entities.Produit;
-import tn.esprit.spring.entities.Rayon;
-import tn.esprit.spring.entities.Stock;
-import tn.esprit.spring.repository.IDetailProduitRepository;
-import tn.esprit.spring.repository.IFournisseurRepository;
-import tn.esprit.spring.repository.IProduitRepository;
-import tn.esprit.spring.repository.IRayonRepository;
-import tn.esprit.spring.repository.IStockRepository;
 
 @Service
 public class ProduitServiceImp implements IProduitService {
@@ -52,16 +34,14 @@ public class ProduitServiceImp implements IProduitService {
 
 	@Override
 	public List<Produit> findAllProduits() {
-		List<Produit> produits = produitRepo.findAll();
 		// System.out.println("produits affichés");
-		return produits;
+		return produitRepo.findAll();
 	}
 	
 
 	@Override
 	public Produit retrieveProduitById(Long id) {
-		Produit prod = produitRepo.getOne(id);
-		return prod;
+		return produitRepo.getById(id);
 
 	}
 	
@@ -95,7 +75,7 @@ public class ProduitServiceImp implements IProduitService {
 	@Override
 	public void deleteProduitById(Long id) {
 
-		Produit prd = produitRepo.getOne(id);
+		Produit prd = produitRepo.getById(id);
 		dpRepo.delete(prd.getDetailProduit());
 			produitRepo.delete(prd);
 			
@@ -133,8 +113,10 @@ public class ProduitServiceImp implements IProduitService {
 	public void assignProduitToStock(Long idProduit, Long idStock) {
     Produit p=	produitRepo.findById(idProduit).orElse(null);
     Stock s=stockRepo.findById(idStock).orElse(null);
-    p.setStock(s);
-    produitRepo.save(p);
+		if (p != null) {
+			p.setStock(s);
+		}
+		produitRepo.save(p);
 
     	          
 	}
@@ -150,16 +132,17 @@ public class ProduitServiceImp implements IProduitService {
 	public void assignFournisseutToProduit(Long idProduit, Long idFournisseur) {
 		Produit p=produitRepo.findById(idProduit).orElse(null);
 		Fournisseur f=fournisseurRepo.findById(idFournisseur).orElse(null);
-		p.getFournisseurs().add(f);
-	    produitRepo.save(p);
+		if (p != null) {
+			p.getFournisseurs().add(f);
+		}
+		produitRepo.save(p);
 				
 	}
 
 
 	@Override
 	public List<Produit> ProduitParDateCreation(Date date1, Date date2) {
-		List<Produit>prod=produitRepo.ProduitParDateCreation(date1, date2);
-		return prod;
+		return produitRepo.ProduitParDateCreation(date1, date2);
 	}
 
 

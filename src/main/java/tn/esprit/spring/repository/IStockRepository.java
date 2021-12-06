@@ -1,16 +1,14 @@
 package tn.esprit.spring.repository;
 
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import tn.esprit.spring.entities.Fournisseur;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import tn.esprit.spring.entities.Stock;
+
+import java.util.List;
 
 @Repository
 public interface IStockRepository extends JpaRepository<Stock, Long> {
@@ -20,7 +18,7 @@ public interface IStockRepository extends JpaRepository<Stock, Long> {
 	//jpql
 	@Modifying
 	@Query(value = "delete from Stock s where s.idStock= :id")
-	public void deleteReqById(@Param("id") Long id) ;
+	void deleteReqById(@Param("id") Long id) ;
 	
 	//InsertDatatoDataBase
 	//sql

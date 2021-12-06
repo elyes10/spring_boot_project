@@ -1,17 +1,11 @@
 package tn.esprit.spring.entities;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 
 
@@ -46,7 +40,7 @@ public class Facture implements Serializable{
 	 
 	 //relation facture  et details facture
 	 @OneToMany(mappedBy = "facture")
-		private  List <detailFacture> detailFactures;
+		private  List <DetailFacture> detailFactures;
 	 
 	 
 	

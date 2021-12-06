@@ -1,16 +1,13 @@
 package tn.esprit.spring.repository;
 
-import java.util.List;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import tn.esprit.spring.entities.Fournisseur;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import tn.esprit.spring.entities.Rayon;
+
+import java.util.List;
 
 
 @Repository
@@ -19,7 +16,7 @@ public interface IRayonRepository extends JpaRepository<Rayon, Long>{
 
 	@Modifying
 	@Query(value = "delete from Rayon r where r.idRayon= :id", nativeQuery = true)
-	public void deleteReqById(@Param("id") Long id) ;
+	void deleteReqById(@Param("id") Long id) ;
 	
 	
 	@Modifying

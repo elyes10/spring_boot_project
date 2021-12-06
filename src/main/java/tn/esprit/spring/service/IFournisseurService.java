@@ -1,11 +1,9 @@
 package tn.esprit.spring.service;
 
-import java.util.List;
+import tn.esprit.spring.entities.Fournisseur;
 
 import javax.management.relation.RelationNotFoundException;
-
-import tn.esprit.spring.entities.DetailProduit;
-import tn.esprit.spring.entities.Fournisseur;
+import java.util.List;
 
 public interface IFournisseurService {
 	List<Fournisseur> retrieveAllFournisseurs();

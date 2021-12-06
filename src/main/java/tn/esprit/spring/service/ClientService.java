@@ -1,9 +1,11 @@
 package tn.esprit.spring.service;
-import java.util.Date;
-import java.util.List;
+
+import tn.esprit.spring.entities.CategorieClient;
 import tn.esprit.spring.entities.Client;
 import tn.esprit.spring.entities.Facture;
-import tn.esprit.spring.entities.categorieClient;
+
+import java.util.Date;
+import java.util.List;
 
 public interface ClientService {
 	
@@ -12,10 +14,10 @@ public interface ClientService {
 	String deleteClient(Long id);
 	Client updateClient(Client c);
 	Client retrieveClient(Long id);
-	 public List<Client> addClients(List<Client> Clients);
-	 public float getChiffreAffaireParCategorieClient(categorieClient categorieClient,Date startDate, Date endDate);
-	 List<Client> FindAllClientsByCategorie(categorieClient categorieClient);
-	 List<Facture> clientFacturesBetweenTwoDates(Client c,Date startDate,Date endDate);
-	 float chiffreAffaireDuneListeFacture(List<Facture>listFacture);
-	 float pourcentageCategorieClient(categorieClient categ);
+	List<Client> addClients(List<Client> Clients);
+	float getChiffreAffaireParCategorieClient(CategorieClient categorieClient, Date startDate, Date endDate);
+	List<Client> FindAllClientsByCategorie(CategorieClient categorieClient);
+	List<Facture> clientFacturesBetweenTwoDates(Client c,Date startDate,Date endDate);
+	float chiffreAffaireDuneListeFacture(List<Facture>listFacture);
+	float pourcentageCategorieClient(CategorieClient categ);
 }

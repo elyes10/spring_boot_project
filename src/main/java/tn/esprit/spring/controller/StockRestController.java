@@ -1,26 +1,14 @@
 package tn.esprit.spring.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.entities.Stock;
+import tn.esprit.spring.repository.IStockRepository;
+import tn.esprit.spring.service.StockService;
 
 import java.util.List;
-import tn.esprit.spring.service.StockService;
-import tn.esprit.spring.repository.IStockRepository;
-import tn.esprit.spring.entities.Stock;
 
 
 @RestController
@@ -38,8 +26,7 @@ public class StockRestController {
 	@ResponseBody
 	@ApiOperation(value = "Récupérer la liste des stocks")
 	public List<Stock> getStocks() {
-	List<Stock> listStocks = stockService.getsAllStocks();
-	return listStocks;
+	return  stockService.getsAllStocks();
 	}
 	
 	
@@ -48,8 +35,7 @@ public class StockRestController {
 	@ResponseBody
 	public Stock addStock(@RequestBody Stock s)
 	{
-	Stock stock = stockService.addStock(s);
-	return stock;
+	return stockService.addStock(s);
 	}
 	
 	

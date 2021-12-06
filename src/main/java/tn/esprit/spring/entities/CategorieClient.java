@@ -1,5 +1,5 @@
 package tn.esprit.spring.entities;
 
-public enum categorieClient {
+public enum CategorieClient {
    Fidele , ordinaire , Premuim
 }

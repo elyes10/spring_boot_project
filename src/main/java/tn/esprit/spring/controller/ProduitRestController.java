@@ -1,32 +1,19 @@
 package tn.esprit.spring.controller;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.management.relation.RelationNotFoundException;
-
-import org.apache.commons.logging.Log;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.entities.CategorieProduit;
 import tn.esprit.spring.entities.Produit;
 import tn.esprit.spring.service.IDetailProduitService;
 import tn.esprit.spring.service.IProduitService;
+
+import javax.management.relation.RelationNotFoundException;
+import java.util.Date;
+import java.util.List;
 @CrossOrigin("*")
 @Slf4j
 @RestController
@@ -35,7 +22,7 @@ public class ProduitRestController {
 	
 	@Autowired
 	IProduitService ips;
-	
+
 	@Autowired
 	IDetailProduitService dps;
 	
@@ -67,8 +54,7 @@ public class ProduitRestController {
 	public Produit ajoutProduit(@RequestBody Produit p){
 		      //  log.info("test {}", p);
 				dps.saveDetailProduit(p.getDetailProduit());
-				Produit product =  ips.addProduit(p);
-		   return product;
+		   return ips.addProduit(p);
 		   
 	}
 	
@@ -77,8 +63,8 @@ public class ProduitRestController {
 	@GetMapping("/retrieveProduit/{idProduit}")
 	@ResponseBody
 	 public Produit getProduit(@PathVariable("idProduit")Long idPoduit){
-		 Produit prd=ips.retrieveProduitById(idPoduit);
-		 return prd;}
+
+		 return ips.retrieveProduitById(idPoduit);}
 	
 	
 	@DeleteMapping("/deleteProduit/{idProduit}")
@@ -105,9 +91,7 @@ public class ProduitRestController {
 	@GetMapping(value="/getProduitsByCategorie/{cp}")
 	@ResponseBody
 	public List<Produit> retrieveProduitsByCat(@PathVariable("cp") CategorieProduit categorieProduit){
-		 List<Produit> produits= ips.retrieveProduitsByCategorie(categorieProduit);
-		return produits ;
-		
+		return ips.retrieveProduitsByCategorie(categorieProduit) ;
 	}
 	
 	@PutMapping("/assignProduitToStock")
@@ -129,8 +113,7 @@ public class ProduitRestController {
 	@ResponseBody
 	public List<Produit> produitParDateCreation(@PathVariable("d1") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date d1,
 			@PathVariable("d2") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date d2 ) {
-		List <Produit>prod=ips.ProduitParDateCreation(d1, d2);
-		return prod;
+		return ips.ProduitParDateCreation(d1, d2);
 		
 	}
 	
