@@ -21,7 +21,7 @@ public class Rayontest {
 	Rayon r = new Rayon();
 	@Test
 	public void testAddRayon() {
-		rayonService.addRayon(r);
+		rayonService.patchRayon(r);
 	
 		
 

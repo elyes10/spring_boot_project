@@ -3,11 +3,16 @@ package tn.esprit.spring.services;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.spring.Repository.IRayonRepository;
+import tn.esprit.spring.entities.Produit;
 import tn.esprit.spring.entities.Rayon;
 
 
@@ -17,6 +22,7 @@ public class RayonServiceimpl implements RayonService{
 	
 	@Autowired
 	IRayonRepository IRR;
+	
 
 	@Override
 	public List<Rayon> getsAllRayons() {
@@ -24,7 +30,7 @@ public class RayonServiceimpl implements RayonService{
 		 ArrayList<Rayon> c=new ArrayList<Rayon>();
 		 IRR.findAll().forEach(rayon1->c.add(rayon1));
 		 for(Rayon r : c) {
-			 log.info("list rayon"+r);
+			 log.error("list rayon"+r);
 		 }
 		 return c;
 	}
@@ -43,11 +49,7 @@ public class RayonServiceimpl implements RayonService{
 				return IRR.save(u);
 	}
 
-	@Override
-	public Rayon findRayon(Long id) {
-		// TODO Auto-generated method stub
-				return IRR.findById(id).get();
-	}
+
 
 	@Override
 	public void deleteRayon(int i) {
@@ -62,4 +64,41 @@ public class RayonServiceimpl implements RayonService{
 		IRR.deleteById((long) rayonId);
 	}
 
+	@Override
+	public Rayon findRayon(Long id) {
+		// TODO Auto-generated method stub
+	  return	IRR.findById(id).get();
+	}
+
+	@Override
+	public Rayon patchRayon(Rayon p) {
+		// TODO Auto-generated method stub
+		 return IRR.save(p);
+	}
+
+	@Override
+	public Page<Rayon> findRayonWithPagination(int offset, int pageSize) {
+		Page<Rayon> Rayons = IRR.findAll(PageRequest.of(offset, pageSize));
+		return Rayons;
+	}
+
+	@Override
+	public Page<Rayon> findRayonWithPaginationAndSorting(int offset, int pageSize, String field) {
+		// TODO Auto-generated method stub
+		return IRR.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+	}
+
+	@Override
+	public List <Produit> findProduit (Long id) {
+		 return (List<Produit>) IRR.findProduit(id);
+	 }
+
+	
+
+
+	
+
+	
+
+	
 }
