@@ -14,7 +14,7 @@ import tn.esprit.spring.service.IProduitService;
 import javax.management.relation.RelationNotFoundException;
 import java.util.Date;
 import java.util.List;
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @RequestMapping("/produit")

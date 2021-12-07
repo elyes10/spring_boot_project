@@ -33,6 +33,7 @@ public class Stock implements Serializable{
 	private String libelleStock;
 	
 	@JsonIgnore
+	@ToString.Exclude
 	@OneToMany(mappedBy = "stock")
 	private  List <Produit> Produits;
 

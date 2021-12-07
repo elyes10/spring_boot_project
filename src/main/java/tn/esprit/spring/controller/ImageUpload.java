@@ -2,6 +2,7 @@ package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class ImageUpload {
 	@Autowired
 	ImageRepository imageRepository;
 
-	@PostMapping("/upload")
+	@PostMapping(value = "/upload")
 	public BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 
 		System.out.println("Original Image Byte Size - " + file.getBytes().length);

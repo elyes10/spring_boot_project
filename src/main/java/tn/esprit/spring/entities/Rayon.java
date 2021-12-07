@@ -32,15 +32,11 @@ public class Rayon implements Serializable{
 	
 	@OneToMany(mappedBy = "rayon")
 	@JsonIgnore
+	@ToString.Exclude
 	private  List <Produit> Produits;
 
 	public Rayon(Long idRayon) {
 		super();
 		this.idRayon = idRayon;
 	}
-	
-	
-	
-	
-	
 }

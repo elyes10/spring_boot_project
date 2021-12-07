@@ -19,7 +19,7 @@ public class RayonRestController {
 	RayonService rayonService;
 
 	// http://localhost:8089/SpringMVC/rayon/get-all-rayons
-		@GetMapping("/getAllrayons")
+		@GetMapping("/get-all-rayons")
 		@ResponseBody
 		@ApiOperation(value = "Récupérer la liste des rayons")
 		public List<Rayon> getRayons() {
