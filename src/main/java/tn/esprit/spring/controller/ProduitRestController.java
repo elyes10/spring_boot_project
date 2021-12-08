@@ -3,17 +3,23 @@ package tn.esprit.spring.controller;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.spring.entities.CategorieProduit;
 import tn.esprit.spring.entities.Produit;
 import tn.esprit.spring.service.IDetailProduitService;
 import tn.esprit.spring.service.IProduitService;
+import tn.esprit.spring.service.ImageService;
 
 import javax.management.relation.RelationNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
+
 @CrossOrigin(origins = "*")
 @Slf4j
 @RestController
@@ -25,9 +31,11 @@ public class ProduitRestController {
 
 	@Autowired
 	IDetailProduitService dps;
-	
-	
-	
+
+	@Autowired
+	ImageService imageService;
+
+
 	@GetMapping(value="/getAllProduits")
 	@ResponseBody
 	public List<Produit> getProduits() {
@@ -48,14 +56,18 @@ public class ProduitRestController {
 	}
 	*/
 	
-	@PostMapping(value ="/addProduit")
+	@PostMapping(value ="/addProduit", consumes = { "multipart/form-data" })
 	@ResponseBody
 	@ApiOperation(value = "Ajouter un produit")
-	public Produit ajoutProduit(@RequestBody Produit p){
-		      //  log.info("test {}", p);
-				dps.saveDetailProduit(p.getDetailProduit());
-		   return ips.addProduit(p);
-		   
+	public Produit ajoutProduit(@RequestPart("produit") Produit p,  @RequestPart("files") MultipartFile[] files){
+		List<String> file_s = new ArrayList<String>();
+		dps.saveDetailProduit(p.getDetailProduit());
+		Produit produit = ips.addProduit(p);
+		for(int i =0 ; i< files.length; i++){
+			imageService.store(files[i], p);
+			file_s.add("https://localhostw:8083/product/"+produit.getIdProduit()+files[i].getOriginalFilename());
+		}
+		return produit;
 	}
 	
 	

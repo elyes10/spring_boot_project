@@ -18,8 +18,7 @@ public interface IProduitService {
 
 	Produit retrieveProduitById(Long id);
 
-	Produit updateProduit(Produit produit) throws RelationNotFoundException
-;
+	Produit updateProduit(Produit produit) throws RelationNotFoundException;
 	
 	void deleteProduitById(Long id);
 	

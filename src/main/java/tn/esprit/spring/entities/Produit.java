@@ -56,7 +56,8 @@ public class Produit implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Fournisseur> fournisseurs;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "produit")
-    private List<ImageModel> images;
+    @ElementCollection(targetClass=String.class)
+    private List<String> imagesUrls;
+
 
 }
