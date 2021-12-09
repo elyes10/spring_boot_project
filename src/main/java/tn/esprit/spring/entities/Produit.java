@@ -1,29 +1,15 @@
-package tn.esprit.spring.entities;
+package tn.esprit.spring.entities ;
 
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
+import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
-
-
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -33,39 +19,59 @@ import java.util.*;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class Produit implements Serializable{
-	
-	
-	private static final long serialVersionUID = 1L ;
-	
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="idProduit")
-  private Long idProduit;
-	@Column(name="code")
-  private String code;
-	@Column(name="Libelle")
-  private String  Lieblle ; 
-	@Column(name="prixUnitaire")
-  private Float prixUnitaire;
-  
-  
-  @ManyToOne
-  private Rayon rayon;
-  
-  @OneToMany(mappedBy="Produit")
-  private List <detailFacture> detailFacture;
-  
-  
-  @ManyToOne
-  private Stock stock;
-  
-  @OneToOne
-  private DetailProduit Detailproduit;
- 
-  @ManyToMany(cascade = CascadeType.ALL)
-  private Set<Fournisseur> Fournisseur;
-  
+public class Produit implements Serializable {
 
-  
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idProduit")
+    private Long idProduit;
+
+    @NotNull
+    @Column(name = "code")
+    private String code;
+
+    @NotNull
+    @Column(name = "libelle")
+    private String libelle;
+
+    @NotNull
+    @Column(name = "prixUnitaire")
+    private Float prixUnitaire;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    private Rayon rayon;
+
+    @OneToMany(mappedBy = "Produit")
+    private List<DetailFacture> detailFacture;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    private Stock stock;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private DetailProduit detailProduit;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Fournisseur> fournisseurs;
+
+    @ElementCollection(targetClass=String.class)
+    private List<String> imagesUrls;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+                })
+        @JoinTable(name = "product_orders",
+                joinColumns = { @JoinColumn(name = "product_id") },
+                inverseJoinColumns = { @JoinColumn(name = "order_id") })
+	@JsonIgnore 
+    private Set<Order> orders = new HashSet<>();
+	public Set<Order> getOrders() {
+		return orders;
+	}
 }

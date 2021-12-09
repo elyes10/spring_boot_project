@@ -1,15 +1,23 @@
 package tn.esprit.spring.service;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.spring.entities.Client;
+import tn.esprit.spring.entities.ERole;
 import tn.esprit.spring.entities.Facture;
+import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.categorieClient;
 import tn.esprit.spring.repository.ClientRepository;
 @Slf4j
@@ -19,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
 	ClientRepository clientRepository;
 	
 	
-
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	@Override
 	public List<Client> retrieveAllClients() {
 		
@@ -29,6 +37,12 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public Client addClient(Client c) {
 		log.info("client ajouté"+c.toString());
+		ERole eRole;
+		eRole=ERole.ROLE_USER;
+	    Role role=new Role(eRole);
+	    Set<Role>r=new HashSet<>();
+	    r.add(role);
+	    c.setRoles(r);
 		return clientRepository.save(c) ;
 	}
 
@@ -122,6 +136,32 @@ public class ClientServiceImpl implements ClientService {
 		int clientsbycateg=FindAllClientsByCategorie(categ).size();
 		float pourcentage=((float)clientsbycateg/allclients)*100;
 		return pourcentage;
+	}
+
+	@Override
+	public Client signin(String username, String password) {
+		Client client=clientRepository.findByNom(username);
+		
+		if (password.equals(client.getPassword())) {
+		
+			return client;
+		}else{
+			return null;
+		}
+		
+	}
+
+	@Override
+	public String findUserrole(String username) {
+		Set<Role>r=new HashSet<>();	
+		r=clientRepository.findByNom(username).getRoles();
+		Role role=new Role(ERole.ROLE_USER);
+		for (Role element :r)
+		{ role=element;
+		
+		}
+		return role.getName().name();
+		
 	}
 
 	

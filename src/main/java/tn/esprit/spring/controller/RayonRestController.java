@@ -17,18 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import tn.esprit.spring.repository.IRayonRepository;
+import tn.esprit.spring.entities.Produit;
 import tn.esprit.spring.entities.Rayon;
 
 import tn.esprit.spring.service.RayonService;
 
 @RestController
-@CrossOrigin
 @Api(tags = "Rayon management")
 @RequestMapping("/rayon")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RayonRestController {
 
 	@Autowired
 	RayonService rayonService;
+	@Autowired
+	IRayonRepository isr;
 
 	// http://localhost:8089/SpringMVC/rayon/get-all-rayons
 		@GetMapping("/get-all-rayons")
@@ -71,6 +75,24 @@ public class RayonRestController {
 		public Rayon patchRayon(@RequestBody Rayon rayon) {
 			return rayonService.patchRayon(rayon);
 	}
+		
+		// http://localhost:8089/SpringMVC/rayon/select/{i}
+		@GetMapping("/select/{i}")
+		@ResponseBody
+		@ApiOperation(value = "findbyid")
+	    public Rayon findRayon(@PathVariable("i")Long i) {
+			
+		return rayonService.findRayon(i);
+	}
+		// http://localhost:8089/SpringMVC/rayon/produitsRayon/{rayon-id}
+		@ResponseBody
+		@GetMapping("/produitsRayon/{rayon-id}")
+		@ApiOperation(value= "findproduit")
+		public List<Produit> findProduit (@PathVariable("rayon-id") Long id) {
+			return (List<Produit>) rayonService.findProduit(id);
+		}
+		
+	}
 	
-}
+
 

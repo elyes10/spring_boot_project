@@ -1,16 +1,9 @@
 package tn.esprit.spring.entities;
 
-import java.io.Serializable;
-
+import lombok.*;
 
 import javax.persistence.*;
-
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.io.Serializable;
 
 
 @Entity
@@ -20,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class detailFacture implements Serializable{
+public class DetailFacture implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L ;

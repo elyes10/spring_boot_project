@@ -23,18 +23,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		auth.userDetailsService(userDetailsService).passwordEncoder(encodePWD());
+		
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.cors();
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/**").authenticated().anyRequest().permitAll().and().formLogin()
-				.permitAll();
+		// http.authorizeRequests().antMatchers("/**").fullyAuthenticated().and
+		// ().httpBasic(); 
+		
+		;
+				
 	}
 
 	@Bean
 	public BCryptPasswordEncoder encodePWD() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	
 
 }

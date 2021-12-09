@@ -2,11 +2,17 @@ package tn.esprit.spring.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import tn.esprit.spring.repository.IRayonRepository;
+import tn.esprit.spring.entities.Produit;
 import tn.esprit.spring.entities.Rayon;
 
 
@@ -16,6 +22,7 @@ public class RayonServiceimpl implements RayonService{
 	
 	@Autowired
 	IRayonRepository IRR;
+	
 
 	@Override
 	public List<Rayon> getsAllRayons() {
@@ -68,6 +75,23 @@ public class RayonServiceimpl implements RayonService{
 		// TODO Auto-generated method stub
 		 return IRR.save(p);
 	}
+
+	@Override
+	public Page<Rayon> findRayonWithPagination(int offset, int pageSize) {
+		Page<Rayon> Rayons = IRR.findAll(PageRequest.of(offset, pageSize));
+		return Rayons;
+	}
+
+	@Override
+	public Page<Rayon> findRayonWithPaginationAndSorting(int offset, int pageSize, String field) {
+		// TODO Auto-generated method stub
+		return IRR.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+	}
+
+	@Override
+	public List <Produit> findProduit (Long id) {
+		 return (List<Produit>) IRR.findProduit(id);
+	 }
 
 	
 

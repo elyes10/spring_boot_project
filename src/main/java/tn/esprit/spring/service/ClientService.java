@@ -18,4 +18,6 @@ public interface ClientService {
 	 List<Facture> clientFacturesBetweenTwoDates(Client c,Date startDate,Date endDate);
 	 float chiffreAffaireDuneListeFacture(List<Facture>listFacture);
 	 float pourcentageCategorieClient(categorieClient categ);
+	 Client signin(String username,String password);
+	 String findUserrole(String username);
 }
