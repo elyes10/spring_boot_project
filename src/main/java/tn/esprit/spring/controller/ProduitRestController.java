@@ -121,4 +121,11 @@ public class ProduitRestController {
                                                 @PathVariable("d2") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d2) {
         return ips.ProduitParDateCreation(d1, d2);
     }
+
+    @PutMapping("/updateRaitingProduit")
+    @ResponseBody
+    public void addRaingProduit(@RequestBody Produit p) throws RelationNotFoundException {
+        System.out.println("produit "+p);
+        ips.addRaitingProduit(p);
+    }
 }

@@ -5,6 +5,9 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -39,6 +42,12 @@ public class Produit implements Serializable {
     @Column(name = "prixUnitaire")
     private Float prixUnitaire;
 
+    @DecimalMin(value="0.0")
+    @DecimalMax(value="5.0")
+    private  float rating;
+
+    private int sommeRating;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     private Rayon rayon;
@@ -58,6 +67,4 @@ public class Produit implements Serializable {
 
     @ElementCollection(targetClass=String.class)
     private List<String> imagesUrls;
-
-
 }
