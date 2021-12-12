@@ -1,8 +1,5 @@
-package tn.esprit.spring.service;
+package tn.esprit.spring.service.impl;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -14,12 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import tn.esprit.spring.entities.Client;
-import tn.esprit.spring.entities.ERole;
-import tn.esprit.spring.entities.Facture;
-import tn.esprit.spring.entities.Role;
-import tn.esprit.spring.entities.categorieClient;
+import tn.esprit.spring.entities.*;
 import tn.esprit.spring.repository.ClientRepository;
+import tn.esprit.spring.service.ClientService;
+
 @Slf4j
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -89,13 +84,13 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public List<Client> FindAllClientsByCategorie(categorieClient categorieClient) {
+	public List<Client> FindAllClientsByCategorie(CategorieClient categorieClient) {
 	
 		return clientRepository.findByCategorieClient(categorieClient);
 	}
 	
 	@Override
-	public float getChiffreAffaireParCategorieClient(categorieClient categorieClient, Date startDate, Date endDate) {
+	public float getChiffreAffaireParCategorieClient(CategorieClient categorieClient, Date startDate, Date endDate) {
 	float chiffreAffaire=0.0f;
 		List<Client> listeClient=FindAllClientsByCategorie(categorieClient);
 	for(int i=0;i<listeClient.size();i++)
@@ -131,7 +126,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public float pourcentageCategorieClient(categorieClient categ) {
+	public float pourcentageCategorieClient(CategorieClient categ) {
 		int allclients=retrieveAllClients().size();
 		int clientsbycateg=FindAllClientsByCategorie(categ).size();
 		float pourcentage=((float)clientsbycateg/allclients)*100;
