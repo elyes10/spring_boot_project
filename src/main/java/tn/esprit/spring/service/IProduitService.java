@@ -6,14 +6,12 @@ import tn.esprit.spring.entities.Produit;
 import javax.management.relation.RelationNotFoundException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface IProduitService {
 	
 	List<Produit> findAllProduits();
 
-	
-	//public Produit addProduit(Produit produit,Long id , Long ids) ;
-	
 	Produit addProduit(Produit produit) ;
 
 	Produit retrieveProduitById(Long id);
@@ -21,20 +19,19 @@ public interface IProduitService {
 	Produit updateProduit(Produit produit) throws RelationNotFoundException;
 	
 	void deleteProduitById(Long id);
-	
-
-	
-	/*public Produit deleteProduct(Long id) ;
-	*/
-
 
 	void assignProduitToStock(Long idProduit, Long idStock);
 	
 	void assignFournisseutToProduit(Long idProduit,Long idFournisseur);
 	
 	List<Produit> retrieveProduitsByCategorie(CategorieProduit categorieProduit);
+
 	List<Produit> ProduitParDateCreation(Date date1,Date date2);
 
+	Produit addRaitingProduit(Produit produit) throws RelationNotFoundException;
 
+	float getProductRating(Long idProduct) throws RelationNotFoundException;
+
+	Map<CategorieProduit,Integer> getNbProduitByCategorie();
 }
 

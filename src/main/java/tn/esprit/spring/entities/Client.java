@@ -1,21 +1,15 @@
 package tn.esprit.spring.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
 @Data
@@ -39,9 +33,9 @@ public class Client  implements Serializable{
 	private String  email;
 	private String password;
 	@Enumerated(EnumType.STRING)
-	private categorieClient  categorieClient;
+	private CategorieClient categorieClient;
 	@Enumerated(EnumType.STRING)
-	private profession  profession;
+	private Profession profession;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")

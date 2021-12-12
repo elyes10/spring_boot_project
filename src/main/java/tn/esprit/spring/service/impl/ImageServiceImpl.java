@@ -21,17 +21,15 @@ public class ImageServiceImpl implements ImageService {
 
     public void store(MultipartFile file, Produit produit) {
         try {
-            final Path rootLocationOneProject = Paths.get("product-dir/");
-            Files.copy(file.getInputStream(), rootLocationOneProject.resolve(produit.getIdProduit()+file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), rootLocationProduct.resolve(produit.getIdProduit()+file.getOriginalFilename()));
         } catch (Exception e) {
             throw new RuntimeException("FAIL!" + e);
         }
     }
 
     public Resource loadProductFiles(String filename, Long productId) {
-        final Path rootLocationOneProject = Paths.get("product-dir/"+productId);
         try {
-            Path file = rootLocationOneProject.resolve(filename);
+            Path file = rootLocationProduct.resolve(filename);
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;

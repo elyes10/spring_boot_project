@@ -8,10 +8,7 @@ import tn.esprit.spring.repository.*;
 import tn.esprit.spring.service.IProduitService;
 
 import javax.management.relation.RelationNotFoundException;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ProduitServiceImp implements IProduitService {
@@ -37,17 +34,15 @@ public class ProduitServiceImp implements IProduitService {
 		// System.out.println("produits affichés");
 		return produitRepo.findAll();
 	}
-	
 
 	@Override
 	public Produit retrieveProduitById(Long id) {
 		return produitRepo.getById(id);
 
 	}
-	
 
 	@Override
-@Transactional
+	@Transactional
 	public Produit updateProduit(Produit produit) throws RelationNotFoundException{
 		Produit existe = this.produitRepo.findById(produit.getIdProduit()).orElseThrow(
 				() -> new RelationNotFoundException("produit not found with id :" + produit.getIdProduit()));
@@ -56,44 +51,20 @@ public class ProduitServiceImp implements IProduitService {
 		existe.setPrixUnitaire(produit.getPrixUnitaire());
 		existe.setRayon(produit.getRayon());
 		existe.setStock(produit.getStock());
-		//existe.setFournisseurs(fournisseurRepo.getOne(produit.getFournisseurs().stream().findFirst().get().getIdFournisseur()));
         DetailProduit dProduit = existe.getDetailProduit();
-		//dProduit.setCategorieProduit(produit.getDetailProduit().getCategorieProduit());
 		Date date =new Date(System.currentTimeMillis());
 		dProduit.setDateDerniereModification(date);
 		existe.setDetailProduit(dProduit);
-
-		//dProduit.setCategorieProduit(produit.getDetailProduit().getCategorieProduit());
-		//dpRepo.save(dProduit);
-		
-		//dProduit.setProduit(produit);
-		
 		return this.produitRepo.save(existe);
 	}
-	
-	
+
 	@Override
 	public void deleteProduitById(Long id) {
-
 		Produit prd = produitRepo.getById(id);
 		dpRepo.delete(prd.getDetailProduit());
 			produitRepo.delete(prd);
-			
 	}
-	
 
-	/*@Override
-	public Produit addProduit(Produit produit,Long idr, Long ids) {
-	Rayon rayon=rayonRepo.findById(idr).orElse(null);
-		Stock stock=stockRepo.findById(ids).orElse(null);
-		
-		produit.setRayon(rayon);
-		produit.setStock(stock);
-		dpRepo.save(produit.getDetailProduit());
-	return 	produitRepo.save(produit);
-		
-	}*/
-	//@Transactional
 	@Override
 	public Produit addProduit(Produit produit) {
 		Set<Fournisseur> listFournisseur = new HashSet<>();
@@ -117,16 +88,12 @@ public class ProduitServiceImp implements IProduitService {
 			p.setStock(s);
 		}
 		produitRepo.save(p);
-
-    	          
 	}
-
 
     @Override
 	public List<Produit> retrieveProduitsByCategorie(CategorieProduit categorieProduit) {
 		return produitRepo.getProduitsByCategorie(categorieProduit) ;
 	}
-
 
 	@Override
 	public void assignFournisseutToProduit(Long idProduit, Long idFournisseur) {
@@ -136,28 +103,50 @@ public class ProduitServiceImp implements IProduitService {
 			p.getFournisseurs().add(f);
 		}
 		produitRepo.save(p);
-				
 	}
-
 
 	@Override
 	public List<Produit> ProduitParDateCreation(Date date1, Date date2) {
 		return produitRepo.ProduitParDateCreation(date1, date2);
 	}
 
+	@Override
+	@Transactional
+	public Produit addRaitingProduit(Produit produit) throws RelationNotFoundException {
+		Produit existe = this.produitRepo.findById(produit.getIdProduit()).orElseThrow(
+				() -> new RelationNotFoundException("produit not found with id :" + produit.getIdProduit()));
+		int somme = existe.getSommeRating();
+		somme = somme+1;
+		float rating = produit.getRating();
+		float ratingb = ((rating+existe.getRating())/somme);
+		existe.setRating(ratingb);
+		System.out.println("produit "+somme);
+		existe.setSommeRating(somme);
+		return this.produitRepo.save(existe);
+	}
 
-	
+	@Override
+	public float getProductRating(Long idProduct) throws RelationNotFoundException {
+		Produit produit = produitRepo.findById(idProduct).orElseThrow(
+				() -> new RelationNotFoundException("produit not found with id :" + idProduct));
+		return produit.getRating();
+	}
 
-    
+	@Override
+	public Map<CategorieProduit, Integer> getNbProduitByCategorie() {
+		Map<CategorieProduit,Integer> nbProduitByCategories= new HashMap<>();
+		Set<CategorieProduit> categories = new HashSet<>();
+		dpRepo.findAll().stream().forEach(d -> categories.add(d.getCategorieProduit()));
+		List<CategorieProduit> categoriesList = new ArrayList<>(categories);
 
+		for (int i=0;i<categoriesList.size();i++) {
+			int m = 0;
+			m = produitRepo.getnbProduitsByCategorie(categoriesList.get(i));
+			nbProduitByCategories.put(categoriesList.get(i),m);
+		}
+		System.out.println("ouma" +nbProduitByCategories);
+		return nbProduitByCategories;
+	}
 
-	
-	
-
-
-	
-	
-	
-	
 
 }

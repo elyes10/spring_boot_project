@@ -6,7 +6,6 @@ import tn.esprit.spring.entities.DetailProduit;
 import javax.management.relation.RelationNotFoundException;
 import java.util.List;
 
-@Service
 public interface IDetailProduitService {
 	
 	

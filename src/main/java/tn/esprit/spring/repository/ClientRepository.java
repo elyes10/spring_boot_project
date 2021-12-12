@@ -1,13 +1,10 @@
-/**
- * 
- */
 package tn.esprit.spring.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
+import tn.esprit.spring.entities.CategorieClient;
 import tn.esprit.spring.entities.Client;
-import tn.esprit.spring.entities.categorieClient;
+
+import java.util.List;
 
 /**
  * @author HP OMEN
@@ -15,7 +12,7 @@ import tn.esprit.spring.entities.categorieClient;
  */
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-	List<Client> findByCategorieClient(categorieClient CategorieClient);
+	List<Client> findByCategorieClient(CategorieClient CategorieClient);
 
 	Client findByNom(String nom);
 

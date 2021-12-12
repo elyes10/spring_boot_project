@@ -1,13 +1,14 @@
-package tn.esprit.spring.entities ;
+package tn.esprit.spring.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,6 +42,12 @@ public class Produit implements Serializable {
     @Column(name = "prixUnitaire")
     private Float prixUnitaire;
 
+    @DecimalMin(value="0.0")
+    @DecimalMax(value="5.0")
+    private  float rating;
+
+    private int sommeRating;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     private Rayon rayon;
@@ -55,23 +62,9 @@ public class Produit implements Serializable {
     @OneToOne(cascade = {CascadeType.ALL})
     private DetailProduit detailProduit;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     private Set<Fournisseur> fournisseurs;
 
     @ElementCollection(targetClass=String.class)
     private List<String> imagesUrls;
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-                })
-        @JoinTable(name = "product_orders",
-                joinColumns = { @JoinColumn(name = "product_id") },
-                inverseJoinColumns = { @JoinColumn(name = "order_id") })
-	@JsonIgnore 
-    private Set<Order> orders = new HashSet<>();
-	public Set<Order> getOrders() {
-		return orders;
-	}
 }
