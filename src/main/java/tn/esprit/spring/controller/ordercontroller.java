@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.service.ClientServiceImpl;
+import tn.esprit.spring.service.impl.ClientServiceImpl;
 import tn.esprit.spring.service.OrderService;
 import tn.esprit.spring.entities.Client;
 import tn.esprit.spring.entities.Order;

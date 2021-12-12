@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import tn.esprit.spring.entities.CategorieClient;
 import tn.esprit.spring.entities.Client;
-import tn.esprit.spring.entities.categorieClient;
-import tn.esprit.spring.service.ClientServiceImpl;
+import tn.esprit.spring.service.impl.ClientServiceImpl;
 
 @RequestMapping("/client")
 @RestController
@@ -71,18 +70,18 @@ public class ClientController {
     }
 	
 	@GetMapping("/clientsByCategory/{category}")
-    public List<Client> ClientBycategory(@PathVariable categorieClient category) {
+    public List<Client> ClientBycategory(@PathVariable CategorieClient category) {
         return clientServiceImpl.FindAllClientsByCategorie(category);
     }
 	
 	@GetMapping("/chiffreAffaireParCategorieClient/{categorieClient}/{startDate}/{endDate}")
-	 public float ChiffreAffaireParCategorieClient(@PathVariable categorieClient categorieClient,@PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date startDate,@PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date endDate)
+	 public float ChiffreAffaireParCategorieClient(@PathVariable CategorieClient categorieClient,@PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date startDate,@PathVariable @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) Date endDate)
 	 {
 		 return clientServiceImpl.getChiffreAffaireParCategorieClient(categorieClient, startDate, endDate);
 	 }
 	
 	@GetMapping("/clientsCategoryPourcentage/{category}")
-    public float ClientcategoryPourcentage(@PathVariable categorieClient category) {
+    public float ClientcategoryPourcentage(@PathVariable CategorieClient category) {
         return clientServiceImpl.pourcentageCategorieClient(category);
     }
 

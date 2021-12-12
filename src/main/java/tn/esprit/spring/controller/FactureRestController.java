@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 import tn.esprit.spring.entities.Client;
 import tn.esprit.spring.entities.Facture;
 import tn.esprit.spring.repository.FactureRepository;
-import tn.esprit.spring.service.ClientServiceImpl;
+import tn.esprit.spring.service.impl.ClientServiceImpl;
 import tn.esprit.spring.service.FactureService;
 
 
@@ -99,7 +99,7 @@ public class FactureRestController {
 		return factureRepository.findByClient(c);
 	}
 	
-	@Scheduled(cron = "0 0 4 1 1 ? *")
+	@Scheduled(cron = "0 0 4 1 1 ?")
 	public void cronMethod() {
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		float ca = 0;
