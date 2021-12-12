@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 @Service
 public class ImageServiceImpl implements ImageService {
 
-    private final Path rootLocationProduct = Paths.get("spring_boot_project/product-dir");
+    private final Path rootLocationProduct = Paths.get("product-dir");
 
 
     public void store(MultipartFile file, Produit produit) {

@@ -6,6 +6,7 @@ import tn.esprit.spring.entities.Produit;
 import javax.management.relation.RelationNotFoundException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface IProduitService {
 	
@@ -30,5 +31,7 @@ public interface IProduitService {
 	Produit addRaitingProduit(Produit produit) throws RelationNotFoundException;
 
 	float getProductRating(Long idProduct) throws RelationNotFoundException;
+
+	Map<CategorieProduit,Integer> getNbProduitByCategorie();
 }
 

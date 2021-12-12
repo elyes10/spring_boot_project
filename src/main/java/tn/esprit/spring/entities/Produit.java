@@ -62,7 +62,7 @@ public class Produit implements Serializable {
     @OneToOne(cascade = {CascadeType.ALL})
     private DetailProduit detailProduit;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     private Set<Fournisseur> fournisseurs;
 
     @ElementCollection(targetClass=String.class)

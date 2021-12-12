@@ -39,4 +39,6 @@ public class Rayon implements Serializable{
 		super();
 		this.idRayon = idRayon;
 	}
+
+
 }

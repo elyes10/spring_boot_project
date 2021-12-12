@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.spring.entities.CategorieProduit;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @Slf4j
@@ -110,22 +112,30 @@ public class ProduitRestController {
 
     @PutMapping("/assignFournisseurToProduit/{p}/{f}")
     @ResponseBody
-    public void assignFournisseurtToProduit(@RequestBody @PathVariable("p")
-                                                    Long idProduit, @PathVariable("f") Long idFournisseur) {
+    public void assignFournisseurtToProduit(@RequestBody @PathVariable("p") Long idProduit, @PathVariable("f") Long idFournisseur) {
         ips.assignFournisseutToProduit(idProduit, idFournisseur);
     }
 
     @GetMapping(value = "/getProduitsByDateCreation/{d1}/{d2}")
     @ResponseBody
-    public List<Produit> produitParDateCreation(@PathVariable("d1") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d1,
-                                                @PathVariable("d2") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d2) {
+    public List<Produit> produitParDateCreation(@PathVariable("d1") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d1, @PathVariable("d2") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d2) {
         return ips.ProduitParDateCreation(d1, d2);
     }
 
     @PutMapping("/updateRaitingProduit")
     @ResponseBody
-    public void addRaingProduit(@RequestBody Produit p) throws RelationNotFoundException {
+    public void addRatingProduit(@RequestBody Produit p) throws RelationNotFoundException {
         System.out.println("produit "+p);
         ips.addRaitingProduit(p);
     }
+
+    @GetMapping("/getRatingByProduit")
+    public float getProductRating(Long idProduct) throws RelationNotFoundException{
+       return  ips.getProductRating(idProduct);
+    }
+    @Scheduled(fixedDelay = 60000)
+    @GetMapping("/getC")
+    Map<CategorieProduit ,Integer> getNb(){
+   return ips.getNbProduitByCategorie();
+}
 }

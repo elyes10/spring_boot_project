@@ -8,10 +8,7 @@ import tn.esprit.spring.repository.*;
 import tn.esprit.spring.service.IProduitService;
 
 import javax.management.relation.RelationNotFoundException;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ProduitServiceImp implements IProduitService {
@@ -118,11 +115,11 @@ public class ProduitServiceImp implements IProduitService {
 	public Produit addRaitingProduit(Produit produit) throws RelationNotFoundException {
 		Produit existe = this.produitRepo.findById(produit.getIdProduit()).orElseThrow(
 				() -> new RelationNotFoundException("produit not found with id :" + produit.getIdProduit()));
-		int somme = produit.getSommeRating();
+		int somme = existe.getSommeRating();
 		somme = somme+1;
 		float rating = produit.getRating();
-		rating = (rating/somme);
-		existe.setRating(rating);
+		float ratingb = ((rating+existe.getRating())/somme);
+		existe.setRating(ratingb);
 		System.out.println("produit "+somme);
 		existe.setSommeRating(somme);
 		return this.produitRepo.save(existe);
@@ -134,4 +131,22 @@ public class ProduitServiceImp implements IProduitService {
 				() -> new RelationNotFoundException("produit not found with id :" + idProduct));
 		return produit.getRating();
 	}
+
+	@Override
+	public Map<CategorieProduit, Integer> getNbProduitByCategorie() {
+		Map<CategorieProduit,Integer> nbProduitByCategories= new HashMap<>();
+		Set<CategorieProduit> categories = new HashSet<>();
+		dpRepo.findAll().stream().forEach(d -> categories.add(d.getCategorieProduit()));
+		List<CategorieProduit> categoriesList = new ArrayList<>(categories);
+
+		for (int i=0;i<categoriesList.size();i++) {
+			int m = 0;
+			m = produitRepo.getnbProduitsByCategorie(categoriesList.get(i));
+			nbProduitByCategories.put(categoriesList.get(i),m);
+		}
+		System.out.println("ouma" +nbProduitByCategories);
+		return nbProduitByCategories;
+	}
+
+
 }

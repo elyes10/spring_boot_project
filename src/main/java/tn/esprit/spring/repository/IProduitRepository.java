@@ -39,4 +39,12 @@ public interface IProduitRepository extends JpaRepository  <Produit, Long> {
 
 	@Query("select p from Produit p where p.detailProduit.dateCreation BETWEEN :startDate AND :endDate ")
 	List<Produit> ProduitParDateCreation(@Param("startDate") Date date1,@Param("endDate") Date date2);
+
+
+
+/*@Query(value ="select COUNT(*) from produit  p  where p.detail_produit.categorie_produit =:categ", nativeQuery = true)
+	 int getnbProduitsByCategorie(String categ);*/
+
+	@Query("select count(p.idProduit) from Produit p  where p.detailProduit.categorieProduit= :categorie")
+	int getnbProduitsByCategorie(@Param("categorie") CategorieProduit categ);
 }
