@@ -41,7 +41,7 @@ public class ProduitRestController {
     @Autowired
     ImageService imageService;
 
-
+    @ApiOperation(value = "Afficher tous les produits")
     @GetMapping(value = "/getAllProduits")
     @ResponseBody
     public List<Produit> getProduits() {
@@ -52,7 +52,7 @@ public class ProduitRestController {
 
     @PostMapping(value = "/addProduit", consumes = {"multipart/form-data"})
     @ResponseBody
-    @ApiOperation(value = "Ajouter un produit")
+    @ApiOperation(value = "Ajouter un nouveau produit")
     public Produit ajoutProduit(@RequestParam("produit") String p, @RequestParam("files") MultipartFile[] files) throws JsonProcessingException, RelationNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         Produit data = objectMapper.readValue(p, Produit.class);
@@ -68,6 +68,7 @@ public class ProduitRestController {
         return produit;
     }
 
+    @ApiOperation(value = "récupérer l'image du produit")
     @GetMapping("/{productId}/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> getFile(@PathVariable String filename, @PathVariable Long productId) throws IOException {
@@ -79,6 +80,7 @@ public class ProduitRestController {
                 .body(new InputStreamResource(file.getInputStream()));
     }
 
+    @ApiOperation(value = "trouver un produit par son id")
     @GetMapping("/retrieveProduit/{idProduit}")
     @ResponseBody
     public Produit getProduit(@PathVariable("idProduit") Long idPoduit) {
@@ -87,41 +89,47 @@ public class ProduitRestController {
 
     @DeleteMapping("/deleteProduit/{idProduit}")
     @ResponseBody
-    @ApiOperation(value = "Supprimer un produit")
+    @ApiOperation(value = "Supprimer un produit par id")
     public void deleteProduitById(@PathVariable("idProduit") Long idProduit) {
         ips.deleteProduitById(idProduit);
     }
 
+    @ApiOperation(value = "mettre à jour un produit")
     @PutMapping("/updateProduit/{idProduit}")
     @ResponseBody
     public void updateProduit(@RequestBody Produit p, @PathVariable("idProduit") Long idProduit) throws RelationNotFoundException {
         ips.updateProduit(p);
     }
 
+    @ApiOperation(value = "récupérer un produit par sa catégorie")
     @GetMapping(value = "/getProduitsByCategorie/{cp}")
     @ResponseBody
     public List<Produit> retrieveProduitsByCat(@PathVariable("cp") CategorieProduit categorieProduit) {
         return ips.retrieveProduitsByCategorie(categorieProduit);
     }
 
+    @ApiOperation(value = "affecter un produit à un stock")
     @PutMapping("/assignProduitToStock")
     @ResponseBody
     public void assignProduitToStock(@RequestBody Produit p) {
         ips.assignProduitToStock(p.getIdProduit(), p.getStock().getIdStock());
     }
 
+    @ApiOperation(value = "affecter un fournisseur à un produit")
     @PutMapping("/assignFournisseurToProduit/{p}/{f}")
     @ResponseBody
     public void assignFournisseurtToProduit(@RequestBody @PathVariable("p") Long idProduit, @PathVariable("f") Long idFournisseur) {
         ips.assignFournisseutToProduit(idProduit, idFournisseur);
     }
 
+    @ApiOperation(value = "récupére  un produit par sa date de création")
     @GetMapping(value = "/getProduitsByDateCreation/{d1}/{d2}")
     @ResponseBody
     public List<Produit> produitParDateCreation(@PathVariable("d1") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d1, @PathVariable("d2") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d2) {
         return ips.ProduitParDateCreation(d1, d2);
     }
 
+    @ApiOperation(value = "ajouter rating au produit")
     @PutMapping("/updateRaitingProduit")
     @ResponseBody
     public void addRatingProduit(@RequestBody Produit p) throws RelationNotFoundException {
@@ -129,10 +137,13 @@ public class ProduitRestController {
         ips.addRaitingProduit(p);
     }
 
+    @ApiOperation(value = "afficher produit rating")
     @GetMapping("/getRatingByProduit")
     public float getProductRating(Long idProduct) throws RelationNotFoundException{
        return  ips.getProductRating(idProduct);
     }
+
+    @ApiOperation(value = "un schédular pour afficher le nombre de produit par catégorie")
     @Scheduled(fixedDelay = 60000)
     @GetMapping("/getC")
     Map<CategorieProduit ,Integer> getNb(){
