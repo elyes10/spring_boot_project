@@ -42,7 +42,7 @@ public class Client  implements Serializable{
 	private categorieClient  categorieClient;
 	@Enumerated(EnumType.STRING)
 	private profession  profession;
-	
+	private Boolean active;
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private  List <Facture> Factures;

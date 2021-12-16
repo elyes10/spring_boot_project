@@ -1,10 +1,12 @@
 package tn.esprit.spring.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.spring.entities.CategorieProduit;
@@ -24,6 +26,7 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 @Slf4j
 @RestController
 @RequestMapping("/produit")
+@Api(tags = "Product management")
 public class ProduitRestController {
 	
 	@Autowired
@@ -35,7 +38,7 @@ public class ProduitRestController {
 	@Autowired
 	ImageService imageService;
 
-
+	@PreAuthorize("hasRole('USER')  or hasRole('ADMIN')")
 	@GetMapping(value="/getAllProduits")
 	@ResponseBody
 	public List<Produit> getProduits() {
@@ -79,16 +82,16 @@ public class ProduitRestController {
 		 return ips.retrieveProduitById(idPoduit);}
 	
 	
-	@DeleteMapping("/deleteProduit/{idProduit}")
+	@GetMapping("/deleteProduit/{idProduit}")
 	@ResponseBody
 	@ApiOperation(value = "Supprimer un produit")
-	public void deleteProduitById(@PathVariable("idProduit") Long idProduit){
+	public String deleteProduitById(@PathVariable("idProduit") Long idProduit){
 		//dps.deleteDetailProduitById(id)
 		ips.deleteProduitById(idProduit);
-		
+		return "success";
 	}
 	
-	@PutMapping("/updateProduit/{idProduit}")
+	@PostMapping("/updateProduit/{idProduit}")
 	@ResponseBody
 	public void updateProduit(@RequestBody Produit p, @PathVariable("idProduit") Long idProduit) throws RelationNotFoundException{
 		 //p.getDetailProduit().setDateDerniereModification(new Date());

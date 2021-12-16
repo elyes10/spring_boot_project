@@ -112,7 +112,7 @@ public class FactureServiceImpl implements FactureService{
 	}
 	*/
 
-	@Transactional
+	@Override
 	public Facture addFactureClient(Facture f, Long idClient) {
 		// TODO Auto-generated method stub
 		Client client = clientRepository.findById(idClient).orElse(null);

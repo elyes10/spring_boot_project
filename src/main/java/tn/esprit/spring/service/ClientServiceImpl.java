@@ -43,6 +43,7 @@ public class ClientServiceImpl implements ClientService {
 	    Set<Role>r=new HashSet<>();
 	    r.add(role);
 	    c.setRoles(r);
+	    c.setActive(true);
 		return clientRepository.save(c) ;
 	}
 
@@ -160,8 +161,28 @@ public class ClientServiceImpl implements ClientService {
 		{ role=element;
 		
 		}
+		
 		return role.getName().name();
 		
+	}
+
+	@Override
+	public void makeAdmin(long clientId) {
+		Client c= clientRepository.getById(clientId);
+		ERole eRole;
+		eRole=ERole.ROLE_ADMIN;
+	    Role role=new Role(eRole);
+	    Set<Role>r=new HashSet<>();
+	    r.add(role);
+	    c.getRoles().clear();
+	   
+	    String role2 =findUserrole(c.getNom());
+	    
+	    if(role2.equals("ROLE_USER")){
+	    	 c.setRoles(r);
+	    	c.setNom("_"+c.getNom());
+	    clientRepository.save(c);
+	    }
 	}
 
 	

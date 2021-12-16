@@ -60,6 +60,14 @@ public class FactureRestController {
 
 	// http://localhost:8089/SpringMVC/facture/add-facture
 	@ApiOperation(value = "Ajouter facture")
+	@PostMapping("/add-facture/{idClient}")
+	@ResponseBody
+	Facture addFactureClient(@RequestBody Facture f, @PathVariable Long idClient) {
+		return factureService.addFactureClient(f, idClient);
+	}
+
+	// http://localhost:8089/SpringMVC/facture/add-facture
+	@ApiOperation(value = "Ajouter facture")
 	@PostMapping("/add-facture")
 	@ResponseBody
 	Facture addFacture(@RequestBody Facture f) {

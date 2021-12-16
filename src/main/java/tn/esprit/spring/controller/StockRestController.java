@@ -1,6 +1,7 @@
 package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ public class StockRestController {
 	@Autowired
 	IStockRepository isr;
 	// http://localhost:8089/SpringMVC/stock/get-all-stocks
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/get-all-stocks")
 	@ResponseBody
 	@ApiOperation(value = "Récupérer la liste des stocks")
@@ -52,6 +54,7 @@ public class StockRestController {
 	
 	
 	// http://localhost:8089/SpringMVC/stock/add-stock
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/add-stock")
 	@ResponseBody
 	public Stock addStock(@RequestBody Stock s)
@@ -62,14 +65,17 @@ public class StockRestController {
 	
 	
 	// http://localhost:8089/SpringMVC/stock/remove-stock/{stock-id}
-	@DeleteMapping("/remove-stock/{stock-id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping("/remove-stock/{stock-id}")
 	@ResponseBody
-	public void removeStock(@PathVariable("stock-id") int stockId) {
+	public String removeStock(@PathVariable("stock-id") int stockId) {
 	stockService.deleteStock(stockId);
+	return "succes";
 	}
 	
 	// http://localhost:8089/SpringMVC/stock/modify-stock
-	@PutMapping("/modify-stock")
+	@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("/modify-stock")
 	@ResponseBody
 	public Stock modifyStock(@RequestBody Stock stock) {
 	return stockService.updateStock(stock);
@@ -111,7 +117,7 @@ public class StockRestController {
 	
 
 	// http://localhost:8089/SpringMVC/stock/update-stock-Withproduit
-	@PutMapping("/update-stock-Withproduit")
+	@PostMapping("/update-stock-Withproduit")
 	@ApiOperation(value ="ajouter un stock")
 	@ResponseBody
 	public Stock addStockwithproduit(@RequestBody Stock s)

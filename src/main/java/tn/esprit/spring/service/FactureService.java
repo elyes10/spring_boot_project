@@ -17,5 +17,6 @@ public interface FactureService {
 	//List<Facture> retrieveFacturesByClient(Long idClient);
 	//List<Facture> getAllFacturesByMontant(float montantFacture);
 	List<Facture> retrieveFacturesByClient(Long idClient);
+	Facture addFactureClient(Facture f, Long idClient);
 
 }

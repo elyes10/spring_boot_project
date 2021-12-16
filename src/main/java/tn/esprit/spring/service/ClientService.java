@@ -20,4 +20,5 @@ public interface ClientService {
 	 float pourcentageCategorieClient(categorieClient categ);
 	 Client signin(String username,String password);
 	 String findUserrole(String username);
+	 void makeAdmin(long clientId);
 }

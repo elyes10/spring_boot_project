@@ -37,7 +37,7 @@ public interface OrderRepository extends CrudRepository<Order, Integer> {
   			customer);
 	@Transactional
 	@Modifying
-	@Query(value="DELETE FROM product_orders po WHERE po.order_id=:order_id",nativeQuery=true)
+	@Query(value="DELETE FROM `product_orders` WHERE `product_id`=:order_id",nativeQuery=true)
 	void truncorder(@Param("order_id") int order_id);
 	/**************************************************jpql******************************************************************/
 	@Query(value="SELECT o from  Order o where o.customer=:customer and o.order_status=1")

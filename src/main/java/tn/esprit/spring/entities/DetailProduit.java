@@ -22,7 +22,7 @@ public class DetailProduit implements Serializable{
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="idDertailProduit")
+	@Column(name="idDetailProduit")
 	private Long idDetailProduit;
 	@Temporal (TemporalType.DATE)
 	private Date dateCreation;
@@ -32,8 +32,8 @@ public class DetailProduit implements Serializable{
 	private CategorieProduit categorieProduit;
 	
 	
-	@JsonIgnore
-	@OneToOne(mappedBy="detailProduit")
-	Produit produit;
+	//@JsonIgnore
+	//@OneToOne(mappedBy="detailProduit")
+	//Produit produit;
 	
 }

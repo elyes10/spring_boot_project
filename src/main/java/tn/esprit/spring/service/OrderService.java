@@ -55,7 +55,7 @@ public class OrderService {
 		order.setOrder_status(o.isOrder_status());
 		order.setOrder_id(o.getOrder_id());
 		order.setProducts(o.getProducts());
-		order.setCustomer(o.getCustomer());
+		//order.setCustomer(o.getCustomer());
 		
 		or.save(order);
 	}
@@ -137,7 +137,7 @@ public class OrderService {
     public void asignproducttoOrder(long pid,int oid)
     {
     	Order o=or.findById(oid).get();
-    	Produit p=pr.findById(pid).get();
+    	Produit p=pr.findById(pid).get(); 
     	Set<Produit> sp=o.getProducts();
     	sp.add(p);
     	p.getOrders().add(o);

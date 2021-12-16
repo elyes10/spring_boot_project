@@ -24,7 +24,7 @@ public class Facture implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	
-	private Long idFActure;
+	private Long idFacture;
 	@Column(name="montantRemise")
 	private float montantRemise ;
 	@Column(name="montantFacture")

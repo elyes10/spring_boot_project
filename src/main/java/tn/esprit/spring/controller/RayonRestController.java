@@ -55,14 +55,15 @@ public class RayonRestController {
 		
 		
 		// http://localhost:8089/SpringMVC/rayon/remove-rayon/{rayon-id}
-		@DeleteMapping("/remove-rayon/{rayon-id}")
+		@GetMapping("/remove-rayon/{rayon-id}")
 		@ResponseBody
-		public void removeRayon(@PathVariable("rayon-id") int rayonId) {
+		public String removeRayon(@PathVariable("rayon-id") int rayonId) {
 		rayonService.deleteRayon(rayonId);
+		return "deleted";
 		}
 		
 		// http://localhost:8089/SpringMVC/rayon/modify-rayon
-		@PutMapping("/modify-rayon")
+		@PostMapping("/modify-rayon")
 		@ResponseBody
 		public Rayon modifyRayon(@RequestBody Rayon rayon) {
 		return rayonService.updateRayon(rayon);

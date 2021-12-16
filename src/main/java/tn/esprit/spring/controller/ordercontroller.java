@@ -11,12 +11,13 @@ import javax.mail.internet.AddressException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,7 @@ public class ordercontroller {
 	OrderService os;
 	@Autowired
 	ClientServiceImpl cs;
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/addOrder")
 	public void add(@RequestBody Order o)
@@ -47,30 +49,31 @@ public class ordercontroller {
 		os.OrderProducts(i, i1, o);;
 	}
 	@CrossOrigin(origins = "http://localhost:4200")
-	@DeleteMapping("/deleteOrder/{id}")
-	public void delete(@PathVariable("id") int i)
+	@GetMapping("/deleteOrder/{id}")
+	public String delete(@PathVariable("id") int i)
 	{
 		os.delete(i);
+	return "success";
 	}
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PutMapping("/updateorder/{i}")
+	@PostMapping("/updateorder/{i}")
 	public void update(@RequestBody Order o,@PathVariable int i)
 	{
 		os.update(o,i);
 	}
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PutMapping("/updateorder2/{i}/{i1}")
+	@PostMapping("/updateorder2/{i}/{i1}")
 	public void update2(@PathVariable int i,@PathVariable int i1){
 		os.assigncustomertoOrder(i, i1);
 		
 	}
 	@CrossOrigin(origins = "http://localhost:4200")
-	@PutMapping("/updateorder3/{i}/{i1}")
+	@PostMapping("/updateorder3/{i}/{i1}")
 	public void update3(@PathVariable int i,@PathVariable int i1){
 		os.asignproducttoOrder(i, i1);
 		
 	}
-	
+	@PreAuthorize("hasRole('USER')  or hasRole('ADMIN')")
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/displayorders")
 	public List<Order> display()
